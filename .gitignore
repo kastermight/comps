@@ -2,6 +2,7 @@
 *.blg
 *.log
 *.lof
+*.lot
 *.gz
 *.toc
 *.bak
