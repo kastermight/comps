@@ -1,0 +1,14 @@
+\chapter{Future Work}
+\label{chapter:6}
+
+The next step for this research is to continue work with the shallow water model and the non-hydrostatic primitive equations.  It can be concluded that 3D nature of wavelets and the 2D of the hydrostatic primitive equations make the hydrostatic version not work efficiently and effectively with the adaptive wavelet collocation method.  Therefore, the work done on extending Brinkman penalization to slip boundary conditions will be transfered to the new non-hydrostatic model.  The rest of this research will focus the shallow water model and non-hydrostatic primitive equations.
+
+\section{Shallow Water Model}
+
+There are two further studies to be done with adaptive wavelet shallow water model.  First, high resolution basin scale studies of the shallow water equations in the North Atlantic in a rectangular domain will be run in parallel.  Then, high resolution studies will be done using Brinkman penalization to describe the complex geometry of the continental topology of the North Atlantic region, also in parallel.  These studies will be done in hope of providing additional information to the ocean community, as to where the Gulf Stream separates from the coast.  
+
+To complete these two studies, access to the LANL parallel computers needs to be finalized.  There are also several details to work out related to the North Atlantic basin topology data and its inclusion in the wavelet code.  The data that will be used for the topology of the North Atlantic basin needs to be translated into the wavelet code's domain.  Also, the module that will smooth out the topological data still needs to be finalized.  The high resolution basin case is ready to run.  
+
+\section{Non-hydrostatic Primitive Equations}
+
+There is still several details to work out with the non-hydrostatic case, mainly related to the most stable boundary conditions for the free surface and the pressure solver.  Initial studies of Brinkman penalization have been done, but the treatment of the pressure in the Brinkman region needs to be closely investigated.  The immediate goal is begin running in 3D with a simple wind-driven test case.  Then, work will begin on adding more realistic topology and bathymetry representations.  Eventually, the plan is to add stratification, more realistic wind forcing (not analytic) and a turbulence model.

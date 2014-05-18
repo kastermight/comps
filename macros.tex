@@ -1,0 +1,73 @@
+\newcommand{\bt}[1]{\textbf{#1}} 					% bold text
+\newcommand{\ds}{\displaystyle} 					% displaystyle
+\newcommand{\rbr}[1]{\left(#1\right)}				% round brackets
+\newcommand{\rbrl}[1]{\left(#1\right.}				% round brackets (left)
+\newcommand{\rbrr}[1]{\left.#1\right)}				% round brackets (right)
+\newcommand{\sbr}[1]{\left[#1\right]}				% square brackets
+\newcommand{\fbr}[1]{\left\{#1\right\}}				% curly bracket
+\newcommand{\vbr}[1]{\left.#1\right|}				% right line bracket 
+\newcommand{\vbl}[1]{\left|#1\right.}				% left line bracket
+\newcommand{\fbrl}[1]{\left\{#1\right.}				% left curly bracket
+\newcommand{\fbrr}[1]{\left.#1\right\}}				% right curly bracket
+\newcommand{\dbr}[1]{\left\|#1\right\|}				% double line brackets
+\newcommand{\lbr}[1]{\left|#1\right|}				% line brackets
+\newcommand{\md}[1]{\textmd{#1}}					% normal text
+\renewcommand{\it}[1]{\textit{#1}}					% italic text
+\newcommand{\bh}[1]{\hat{\bt{#1}}}					% unit vectors = bold + hat
+\newcommand{\pt}{\partial}							% \partial
+\renewcommand{\div}{\md{div\,}}						% div
+\newcommand{\gr}{\md{grad\,}}						% grad
+\newcommand{\cl}{\md{curl\,}}						% curl
+\newcommand{\vr}{\varepsilon}						% \varepsilon 
+\newcommand{\ges}{\epsilon}							% \epsilon
+\newcommand{\bs}{$\blacksquare$}					% black square (QED)
+\newcommand{\la}{\ \Longrightarrow\ }				% \Longrightarrow + space
+\newcommand{\vp}{\varphi}							% \varphi
+\newcommand{\olr}[1]{\overleftrightarrow{#1}}		% jargon tensorial notation
+\newcommand{\mb}[1]{\boldsymbol{#1}}				% bold symbol in math environment
+\newcommand{\ga}{\alpha}							% \alpha
+\newcommand{\gb}{\beta}								% \beta
+\newcommand{\gG}{\gamma}							% \gamma
+\newcommand{\gd}{\delta}							% \delta
+\newcommand{\gD}{\Delta}							% \Delta
+\newcommand{\gs}{\sigma}							% \sigma
+\newcommand{\gl}{\lambda}							% \lambda
+\newcommand{\gL}{\Lambda}							% \Lambda
+\newcommand{\go}{\omega}							% \omega
+\newcommand{\gth}{\theta}							% \theta
+\newcommand{\mg}[1]{\mathbb{#1}}					% Bold letters in math mode
+\newcommand{\spn}{\md{span}}						% span in normal text
+\newcommand{\ra}{\ \rightarrow\ }					% \rightarrow + space
+\newcommand{\rl}{\leftrightarr}						% \leftrightarr
+\newcommand{\tc}{\checkmark}						% \checkmark
+\newcommand{\sgn}{\md{sign}}						% sign
+\newcommand{\tcl}{\textcolor}						% \textcolor
+\newcommand{\abr}[1]{\left \langle#1\right \rangle}	% angle brackets
+\newcommand{\txt}[1]{\texttt{#1}}					% \texttt
+\newcommand{\ol}[1]{\overline{#1}}					% overline 
+\renewcommand{\exp}[1]{\md{exp} \rbr{#1}}			% exp
+\renewcommand{\ln}[1]{\md{ln} \rbr{#1}}				% ln
+\newcommand{\mc}{\mathcal}							% calligraphic
+\newcommand{\uc}[1]{$^{\md{\underline{#1}}}$}			% underline
+\newcommand{\ssc}[1]{\textsuperscript{#1}}			% superscript
+\newcommand{\rtm}{\ssc{\textregistered}}			% registered tm sign
+\newcommand{\tm}{\ssc{\texttrademark}}				% tm sign
+\newcommand\chap[1]{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}}
+\newcommand\sect[1]{%
+  \section*{#1}%
+  \addcontentsline{toc}{section}{#1}}
+\newcommand{\tb}{\textbullet}
+
+\def\etal{{\em et al.\ }}
+\def\etc{etc.\ }
+\def\eg{{\em e.g.\ }}
+\def\ie{{\em i.e.\ }}
+\def\etaT{\eta_{\mbox{\tiny$T$}}}
+\def\alphaT{\alpha_{\mbox{\tiny$T$}}}
+\def\drawline#1#2{\raise 2.5pt\vbox{\hrule width #1pt height #2pt}}
+\def\spacce#1{\hskip #1pt}
+\def\solid{\drawline{24}{.5}\nobreak\ }
+\def\bdash{\hbox{\drawline{4}{.5}\spacce{2}}}
+\def\dashed{\bdash\bdash\bdash\bdash\nobreak\ }

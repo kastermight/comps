@@ -1,0 +1,62 @@
+
+\newtheorem{theorem}{Theorem}
+
+
+\newcommand{\diff}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\diffr}[1]{\diff{#1}{r}}
+\newcommand{\diffth}[1]{\diff{#1}{\theta}}
+\newcommand{\diffz}[1]{\diff{#1}{z}}
+
+\newcommand{\vth}{V_{\theta}}
+
+\newcommand{\twochoices}[2]{\left\{ \begin{array}{lcc}
+        \displaystyle #1 \\ \vspace{-10pt} \\
+        \displaystyle #2 \end{array} \right. } %}
+
+\newcommand{\threechoices}[3]{\left\{ \begin{array}{lcc}
+        #1 \\ #2 \\ #3 \end{array} \right. }    %}
+
+\newcommand{\fourchoices}[4]{\left\{ \begin{array}{lcc}
+        #1 \\ #2 \\ #3 \\ #4 \end{array} \right. }      %}
+
+\newcommand{\twovec}[2]{\left(\begin{array}{c} #1 \\ #2 \end{array}\right)}
+\newcommand{\threevec}[3]{\left(\begin{array}{c} #1 \\ #2 \\ #3 \end{array}\right)}
+\newcommand{\twomatrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 \end{array}\right)}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%            New  Definitions            %%%%%%%%%%%%
+\def\red{\color{red}}
+\def\bl{\color{black}}
+%\def\bareps[#1]{\overline{#1}^{{\scriptscriptstyle>}\epsilon }}
+\def\bareps[#1]{{\red \overline{{\bl #1}}}^{{\red {\scriptscriptstyle>}\epsilon} }}
+\def\Scl[#1]{\|#1\|_{_{\rm WTF}}}
+
+\newcommand\ie{{\em i.e.}}
+
+\newcommand{\bF}{\mbox{\boldmath $F$}}
+\newcommand{\bu}{\mbox{\boldmath $u$}}
+\newcommand{\bU}{\mbox{\boldmath $U$}}
+\newcommand{\bx}{\mbox{\boldmath $x$}}
+\newcommand{\by}{\mbox{\boldmath $y$}}
+\newcommand{\bV}{\mbox{\boldmath $V$}}
+\newcommand{\dee}[1]{\,{\rm d}{#1}}
+
+\def\drawline#1#2{\raise 2.5pt\vbox{\hrule width #1pt height #2pt}}
+
+\def\spacce#1{\hskip #1pt}
+\def\bdash{\hbox{\drawline{4}{.5}\spacce{2}}}
+\def\solid{\drawline{24}{.5}\nobreak\ }
+\def\dotted{\hbox{\leaders\bdot\hskip 24pt}\nobreak\ }
+\def\dashed{\bdash\spacce{3}\bdash\spacce{3}\bdash\nobreak\ }
+\def\dashdotted{\hbox{\drawline{9.5}{.5}\spacce{3}\drawline{1}{.5}\spacce{3}\drawline{9.5}{.5}}\nobreak\ }
+\def\dashddotted{\hbox{\drawline{9.5}{.5}\spacce{3}\drawline{1}{.5}\spacce{3}\drawline{1}{.5}\spacce{3}\drawline{9.5}{.5}}\nobreak\ }
+
+\def\hatbareps[#1]{\widehat{\overline{#1}^{{\scriptscriptstyle>}\epsilon}}}
+\def\barepsp[#1]{\overline{#1}^{{\scriptscriptstyle>}\epsilon+ }}
+\def\bartwoeps[#1]{\overline{#1}^{{\scriptscriptstyle>}2\epsilon }}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

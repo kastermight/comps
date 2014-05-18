@@ -1,0 +1,78 @@
+%!TEX root = comps_NKasimov.tex
+\documentclass[defaultstyle,11pt]{thesis2side}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%  see documentation for information about  %%%%%%%%%%
+%%%%%%%%%%%  the options (11pt, defaultstyle, etc.)   %%%%%%%%%%
+%%%%%%%  http://www.colorado.edu/its/docs/latex/thesis/  %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%    load any packages which are needed    %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{latexsym}       % to get LASY symbols
+\usepackage{graphicx}       % to insert PostScript figures
+\usepackage{rotating}       % for sideways tables/figures
+\usepackage{color}
+\usepackage{subfigure}
+
+%%%%%%%%%%%%%% qianlong add starts
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+
+\title{Comprehensive Exam Write-up: High and Low Fidelity Simulations of Compressible Supersonic Flow Around Complex Geometries}
+
+\author{Nurlybek}{Kasimov}
+
+\otherdegrees{B.S., Moscow Institute of Physics and Technology, 2008 \\
+          M.S., Moscow Institute of Physics and Technology, 2010}
+
+\degree{Doctor of Philosophy}       %  #1 {long descr.}
+    {Ph.D., Mechanical Engineering}     %  #2 {short descr.}
+
+\dept{Department of}            %  #1 {designation}
+    {Mechanical Engineering}        %  #2 {name}
+
+\advisor{}             %  #1 {title}
+    {Prof. Oleg V. Vasilyev}          %  #2 {name}
+
+\reader{Prof.~Peter Hamlington}     %  1st person to sign thesis
+\reader{Prof.~Daven Henze}       %  2nd person to sign thesis
+\readerThree{Prof.~Alireza Doostan}     %  3rd person to sign thesis
+\readerFour{Prof.~Sedat Biringen}     %  4th person to sign thesis
+\readerFive{Prof.~John A. Evans}       %  5th person to sign thesis
+
+
+\abstract{  \OnePageChapter % one page only ??
+  This work consist of two parts --- high and low fidelity simulations of supersonic flow around solid obstacles of arbitrary shapes, accordingly. This project is supported by ONR MURI on Soil Blast Modeling. Low fidelity simulations were performed by solving 3D Euler equations for supersonic flows in presence of obstacles using Roe solver as a shock capturing scheme and modification of Brinkman penalization method to handle obstacles through forcing terms. Particle-particle interactions were handled using 3D DEM solver and then coupled with Euler/Roe CFD solver. High fidelity simulations, on the other hand, were performed using Adaptive Wavelet Collocation Method for grid adaptation and adaptive differentiation, Artificial Viscosity Method as a shock capturing scheme and Characteristic Based Volume Penalization Method to handle solid obstacles through forcing terms.
+ }
+%\dedication[Dedication]{    % NEVER use \OnePageChapter here.
+%    \begin{center}To Scott\end{center}
+%    }
+    
+%    \acknowledgements{  \OnePageChapter % *MUST* BE ONLY ONE PAGE!
+
+%Thank you.  
+
+%}
+
+\ToCisShort % a 1-page Table of Contents ??
+
+ \LoFisShort % a 1-page List of Figures ??
+%   \emptyLoF   % no List of Figures at all ??
+
+ \LoTisShort % a 1-page List of Tables ??
+%   \emptyLoT   % no List of Tables at all ??
+
+\begin{document}
+\input macros.tex
+\input chapter1.tex
+\input chapter2.tex
+\input chapter3.tex
+
+\bibliographystyle{ieeetr}
+\bibliography{nkasimov}
+\end{document}

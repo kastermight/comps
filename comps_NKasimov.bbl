@@ -1,0 +1,53 @@
+\begin{thebibliography}{10}
+
+\bibitem{proc:muri}
+R.~Regueiro and et.al., ``Onr muri project on soil blast modeling and
+  simulation,'' in {\em Dynamic Behavior of Materials} (B.~Sang, D.~Casem, and
+  J.~Kimberley, eds.), vol.~1 of {\em Society for Experimental Mechanics
+  Series}, (Bethel, CT, USA), pp.~341--353, Society for Experimental Mechanics,
+  Inc., Springer, 2014.
+
+\bibitem{ebd_nk_ovv_cbvp_jcp}
+E.~Brown-Dymkoski, N.~Kasimov, and O.~V. Vasilyev, ``A characteristic based
+  volume penalization method for general evolution problems applied to
+  compressible viscous flows,'' {\em J. Comp. Phys.}, vol.~262, pp.~344--357,
+  April 2014.
+
+\bibitem{lib:RegVas}
+J.~Regele and O.~Vasilyev, ``An adaptive wavelet-collocation method for shock
+  computations,'' {\em Intl. Journal of CFD}, vol.~23, no.~7, pp.~503--518,
+  2009.
+
+\bibitem{lib:wlt_main}
+K.~Schneider and O.~V. Vasilyev, ``Wavelet methods in computational fluid
+  dynamics,'' {\em Ann. Rev. Fluid Mech.}, vol.~42, pp.~473--503, 2010.
+
+\bibitem{book:Toro}
+E.~Toro, {\em Riemann Solvers and Numerical Methods for Fluid Dynamics: A
+  Practical Introduction}.
+\newblock Springer, 3~ed., 2009.
+
+\bibitem{lib:ib_peskin}
+C.~Peskin, ``Numerical analysis of blood flow in the heart,'' {\em J. Comp.
+  Phys.}, vol.~25, no.~3, pp.~220--252, 1977.
+
+\bibitem{lib:vp_brink}
+E.~Arquis and J.~Caltagirone, ``Sur les conditions hydrodynamiques au voisinage
+  d'une interface milieu fluide -- milieu poreux: application \`a la convection
+  naturelle,'' {\em C.R. Acad. Sci. Paris II}, vol.~299, pp.~1--4, 1984.
+
+\bibitem{lib:vp_liu}
+Q.~Liu and O.~Vasilyev, ``A brinkman penalization method for compressible flows
+  in complex geometries,'' {\em J. Comp. Phys.}, vol.~227, no.~2, pp.~946--966,
+  2007.
+
+\bibitem{lib:donoho}
+D.~L. Donoho, ``Interpolating wavelet transforms,'' tech. rep., Department of
+  Statitistics, Stanford University, October 1992.
+
+\bibitem{lib:wlt_home}
+W.~Sweldens and P.~Shroder, {\em Wavelets in the Geosciences}, vol.~90 of {\em
+  Lecture Notes in Earth Sciences}, ch.~2, pp.~72--107.
+\newblock Springer, 2000.
+
+\end{thebibliography}

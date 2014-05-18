@@ -1,0 +1,49 @@
+\chapter[Non-Hydrostatic Primitive Equations]{Non-hydrostatic Primitive Equations}
+\label{chapter:5}
+
+For this work of developing a new approach to oceanic modeling, it was natural to start with with the hydrostatic formulation of the primitive equations.  The vast majority of Oceanic General Circulation Models (OGCMs) use the primitive equations under the hydrostatic pressure approximation \cite{96Mcw}.  However, due to the 3D nature of wavelets, and thus, 3D nature of the adaptive wavelet collocation method, it was found that using the non-hydrostatic form of the equations suited the numerical method much better.  This is mainly due to difficulty in vertically integrating the hydrostatic pressure equation.  When using a highly adaptive grid, integration in one direction is difficult and can be unstable.  
+
+The Imperial College Ocean Model (ICOM), which is a finite-element, unstructured grid model, also found that the non-hydrostatic form was more appropriate for their model, \cite{07BCLDR}.  Another unstructured-grid model that uses finite-volume method is the SUNTANS model from Stanford.  They also are using the non-hydostatic form \cite{06FGS}.  MITgcm also did some studies on hydrostatic vs. non-hydrostatic and found that the non-hydrostatic was just as computationally efficient as the hydrostatic when run in the hydrostatic limit \cite{98MJH}.  Therefore, after working with the hydrostatic primitive equations and after confirmation from other similar oceanic models, it was decided to focus completely on the non-hydrostic form.
+
+\section{Physical Model and Governing Equations}
+
+The non-hydrostatic primitive equations are the fullest version of the primitive equations used for oceanic circulation modeling.  They are the Navier-Stokes equations with the effects of rotation (details in Section \ref{derivegoverningeqns}) and conservation of mass.  Currently, stratification is also being neglected so there is no variation in density.  In this model, we are using an open lid assumption, so the kinematic boundary conditions to describes the sea surface height is used.  
+%
+\begin{equation*}\label{e:nh_eta}
+\frac{\partial \eta}{\partial t} + ({\bf u_h} |_{\rm z=z_{max}}) \cdot \nabla \eta  =  (w|_{\rm z=z_{max}}) - \bar{w}
+\end{equation*}
+
+\begin{equation*} \label{e:nh_momentum}
+\frac{\partial {\bf u}}{\partial t} + {\bf u} \cdot \nabla {\bf u} + \frac{1}{Ro} f \hat{\bf k} \times {\bf u} = -\nabla P - \frac{1}{Fr^2} \hat{\bf k} + \frac{1}{Re} \nabla ^2 {\bf u} 
+\end{equation*}
+
+\begin{equation*}\label{e:nh_continuity}
+\nabla \cdot {\bf u} = 0
+\end{equation*}
+%
+where $\bar{w}$ is the average vertical velocity.  It is subtracted off to maintain conservation of mass in an open lid system \cite{97MAHPH}.
+
+\section{Brinkman Penalization for Non-Hydrostatic Equations}
+
+For the non-hydrostatic primitive equations, Brinkman penalization is simply a straightforward application of the incompressible Brinkman penalization \cite{84AC}.  It works by the addition of a forcing term in the momentum equations,   
+%
+\begin{equation*} \label{e:nh_momentum}
+\frac{\partial {\bf u}}{\partial t} + {\bf u} \cdot \nabla {\bf u} + \frac{1}{Ro} f \hat{\bf k} \times {\bf u} = -\nabla P - \frac{1}{Fr^2} \hat{\bf k} + \frac{1}{Re} \nabla ^2 {\bf u} - \frac{\chi}{\eta_{pen}} {\bf u}
+\end{equation*}
+where, 
+
+\begin{equation*} \label{e:nh_chi}
+\chi ({\bf x},t) = \left \{ \begin{array}{l} 1 \; \mbox{ if } {\bf x} \in O({\bf x}), \\ 0 \; \mbox{ otherwise}
+\end{array} \right \}
+\end{equation*}
+%
+Some preliminary tests have been done on Brinkman penalization with the non-hydrostatic form of the equations.  Although, a lot of technical details still need to be shorted out regarding boundary conditions and how to deal with the surface variable, $\eta$ (sea surface height).  Figure \ref{f:prelimresults} shows some of the preliminary results experimenting with Brinkman penalization on a 2D wind-driven basin case.  
+
+\begin{center}
+\begin{figure}[htp]
+\centering
+  \includegraphics[width=5 in]{Images/2D_pe_bpresults.eps}
+  \caption[Preliminary results of non-hydrostatic form with Brinkman penalization]{Preliminary results of the velocity and grid for non-hydrostatic form with Brinkman penalization on a 2D wind-driven basin case.}\label{f:prelimresults}
+\end{figure}
+\end{center}
+

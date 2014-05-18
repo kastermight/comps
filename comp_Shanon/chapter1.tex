@@ -1,0 +1,83 @@
+\chapter{Introduction}
+\label{chapter:1}
+
+\section{Motivation and Objective}
+
+Ocean circulation is a prototypical ``Strongly Coupled Multiscale
+Phenomenon,'' and the computational challenge of modeling it lies in
+accurately representing the immense range of spatial and temporal
+scales that interact to produce the intricate and complex behavior
+that drives low-frequency climate variability.  Studies of the
+variability of our climate system suggest that changes in the
+meridional overturning circulation (MOC) have the potential to trigger
+severe climate change events, e.g. \cite{clark}.  An
+important component of the MOC is the intricate process of formation
+of deep water in the North Atlantic, and a popular example of a
+climate change event is a scenario wherein a weakening of the MOC in
+the North Atlantic from its present level due to a change in the
+deep water formation (as, e.g. due to doubled CO$_2$ levels in the
+atmosphere) triggers a change to ice-age like
+conditions\cite{clark,wood}.  Such studies are presently based on
+either what are called ``box-models'' of oceans wherein the global
+ocean is idealized as a few (typically two or three) interconnected
+rectangular basins, or more realistic ocean models but at coarse
+resolutions.  While studies using these models have given insights
+into possible mechanisms for variability of the meridional overturning circulation, the lack of detailed representation of physics in these
+models makes the significance and applicability of such results to
+the actual climate system questionable and controversial, e.g. \cite{gent}.
+
+On the other hand, in comparing either satellite observations or
+in-situ measurements of circulation or observed tracer transport in
+the world oceans to the modeled ocean circulation used in climate
+studies, the pathologically sluggish nature of the modeled
+circulation is striking; the modeled circulation does not just
+severely under-represent mesoscale variability, but also fails to
+represent the mean circulation reasonably, e.g. \cite{IPCC}.
+However, studies of ocean circulation on the shorter (annual to
+decadal) time scale have shown that the global ocean circulation can
+be modeled realistically using high resolution\cite{Smith}; an
+important result coming out of these studies is the major role
+played by mesoscale eddies.  Thus, a systematic study of possible
+climate change scenarios calls for carrying out a significant number
+of long-term (centennial to millenial time scale) simulations using
+realistic models at fairly high resolutions.
+
+Thus, while there is no hope for being able to simulate ocean
+circulation in full detail in the foreseeable future, the need for
+reliable and computationally affordable predictions of the large scale
+aspects of such global circulation is truly pressing: The
+unprecedented effect of man on the environment mainly through the
+side-effects of energy consumption patterns is possibly leading us
+into new climate regimes, leaving the future of the climate system
+highly uncertain.  Given the only climate system that we have, the
+importance of being able to accurately model such a system becomes
+apparent.
+
+Since computing power, memory, and time are all scarce resources, the
+problem of simulating turbulent flows has become one of how to
+abstract or simplify the complexity of the physics represented in the
+full governing equations in such a way that the ``important'' physics
+of the problem is captured at a lower cost.
+
+\section{Methodology}
+
+The goal of this work is to demonstrate how the adaptive wavelet collocation method can address the computational goals described above.  To do this, the wavelet method is applied to different sets of governing equations for the ocean (shallow water model, hydrostatic primitive equations and non-hydrostatic primitive equations) and verification and testing is done.  Additionally, several extensions of Brinkman penalization method were developed and tested to improve representation of continental topology and bottom bathymetry.  An introduction to each of these sections of the work is given below.  
+
+\subsection{A Brinkman Penalization Method}
+\label{sec:brinkman_penal_chapter1}
+
+Modeling complex boundaries is a pressing issue in the field of ocean modeling.  Immersed boundary methods are well known for the their efficient implementation of solid boundaries of arbitrary complexity on fixed non-body conformal Cartesian grids.  Brinkman penalization, a type of immersed boundary, has been used in many engineering problems to simulate the presence of arbitrarily complex solid obstacles and boundaries.  This volume penalization technique is a way to enforce boundary conditions to a specified precision without changing the numerical method or grid used in solving the equations.  Its main advantage, when compared to other penalization methods, is that the error can be estimated rigorously and controlled via the penalization parameter \cite{99ABF}.  Additionally, it can be shown that the penalized equations converge to the exactly solution in the limit as the penalization parameter tends to zero \cite{99Angot}.  
+
+Immersed boundary methods have mostly been developed for incompressible flows, but more recently have been extended for compressible flows \cite{06LV}.  Both of these formulations will be used in the following work, as well as further extensions of each.  Immersed boundary methods are not as popular in ocean models, however, some models are using them \cite{06FGS}.  
+
+\subsection{Adaptive Wavelet Collocation Method}
+
+In order to model complex geometries, a non-uniform, adaptive mesh is ideal.  For many adaptive models, the main challenge is grid generation.  Not only is grid generation difficult, but the process used is often trail and error.  It is also very expensive.  It is ideal to have the grid follow the structures in the flow in addition to having a grid that adapts to the complicated curves of the continental topology.  This requires grid generation at every time step.  Two mathematical approaches will be combined to deal with these issues:  Brinkman penalization \cite{84AC} and the adaptive wavelet collocation method \cite{00VB, 03Vasilyev, 02VK, 96VP, 97VP}.  Adaptive wavelet collocation method will efficiently resolve localized flow structures in complicated geometries, while the Brinkman penalization will efficiently implement arbitrarily complex solid boundaries.  
+
+The hybrid wavelet collocation - Brinkman penalization method has been investigated for three cases \cite{05KV, 00KVC, 02VK, 06LV}:  two dimensional vorticity equation, incompressible Navier-Stokes equations in primitive variable formulation, and compressible Navier-Stokes equations in primitive variable formulation.  High Reynolds number flows can be simulated while greatly reducing the number modes and controlling the $L_{\infty}$ error.  The computational cost of the algorithm is independt of the the dimensionality of the problem.  It is $O({\cal N})$, where ${\cal N}$ is the total number of wavelets actually used.  The adaptive wavelet collocation method uses second generation wavelets, which allows the order of the method to be variable.  Also, the method is easily applied in both two and three dimensions.  
+
+\section{Organization}
+
+The rest of this paper is organized as follows.  In Chapter 2, the necessary background of ocean circulation modeling and the numerical methods will be covered.  For this research, the shallow water model was used as a first step to test out the different numerical techniques.  This work is covered in Chapter 3.  Next, testing on the hydrostatic primitive equations was done and this is covered in Chapter 4.  The hydrostatic primitive equations were found to not be ideal in working with the wavelet methods, because of the 3D nature of wavelets.  Thus, the work switched to begin working with the non-hydrostatic primitive equations.  This work is discussed in Chapter 5.  Finally, a discussion of future work is found in Chapter 6. 
+
+%Chapter~\ref{chapter:3}

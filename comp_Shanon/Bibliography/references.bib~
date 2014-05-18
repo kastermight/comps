@@ -1,0 +1,103 @@
+% ------------------------------------------------------------------------
+% SAMPLE BIBLIOGRAPHY FILE
+% ------------------------------------------------------------------------
+@BOOK{04Gri,
+  AUTHOR =       {S. M. Griffies},
+  TITLE =        {Fundamentals of Ocean Models},
+  YEAR =         {2004},
+%  volume =       {2},
+%  number =       {3},
+%  series =       {55},
+%  address =      {653 this st.},
+%  edition =      {3},
+%  month =        {may},
+%  note =         {good book},
+%  abstract =     {this is a book},
+%  isbn =         {},
+%  price =        {$4,000,000},
+%  keywords =     {book},
+%  source =       {internet},
+}
+
+@BOOK{99HB,
+  AUTHOR =       {D. B. Haidvogel, A. Beckmann},
+  TITLE =        {Numerical Ocean Circulation Modeling},
+  YEAR =         {1999},
+}
+
+@ARTICLE{96Mcw,
+  AUTHOR =       {J. C. McWilliams},
+  TITLE =        {Modeling the Oceanic General Circulation},
+  JOURNAL =      {Annual Review of Fluid Mechanics},
+  YEAR =         {1996},
+}
+
+@ARTICLE{05KV,
+  AUTHOR =       {Nicholas Kevlahan, Oleg Vasilyev},
+  TITLE =        {An Adaptive Wavelet Collocation Method for Fluid-Structure Interaction at High Reynolds Numbers},
+  JOURNAL =      {SIAM Journal of Scientific Computing},
+  YEAR =         {2005},
+}
+
+@ARTICLE{04GV,
+  AUTHOR =       {Daniel Goldstein, Oleg Vasilyev},
+  TITLE =        {Stochastic Coherent Adaptive Large Eddy Simulation Method},
+  JOURNAL =      {Physics of Fluids},
+  YEAR =         {2004},
+}
+
+@ARTICLE{11STSW,
+  AUTHOR =       { Detlef Stammer, Robin Tokmakian, Albert Semtner, Carl Wunsch},
+  TITLE =        {How well does a 1/4° global circulation model simulate large-scale oceanic observations?},
+  JOURNAL =      {Geophysical Research},
+  YEAR =         {1111},
+}
+
+@ARTICLE{91KSWP,
+  AUTHOR =       {P. D. Killworth, D. J. Webb, S.M. Paterson},
+  TITLE =        {The development of a free-surface Bryan-Cox-Semtner ocean model},
+  JOURNAL =      {Journal of Physical Oceanography},
+  YEAR =         {1991},
+  volume =       {21},
+  pages =        {1333-1348},
+}
+
+@ARTICLE{06LV,
+  AUTHOR =       {Qianlong Liu, Oleg Vasilyev},
+  TITLE =        {A Brinkman Penalization Method for Compressible Flow in Complex Geometries},
+  JOURNAL =      {Elseview Science},
+  YEAR =         {2006},
+}
+
+@ARTICLE{99GN,
+  AUTHOR =       {Richard Greatbatch, B. T. Nadiga},
+  TITLE =        {Four-Gyre Circulation in a Barotropic  Model with Double-Gyre Wind Forcing},
+  JOURNAL =      {Journal of Physical Oceanography},
+  YEAR =         {1999},
+}
+
+@ARTICLE{97KT,
+  AUTHOR =       {Kiehl, Trenberth},
+  TITLE =        {1997: Earth's Annual Global Mean Energy Budget},
+  JOURNAL =      {Bull. Am. Met. Soc.},
+  YEAR =         {97},
+  volume =       {78},
+  pages =        {197-208},
+}
+
+@ARTICLE{01HDG,
+  AUTHOR =       {J. Houghton, Y. Ding, D. Griggs, M. Noguer, P. van der Linden, X. Dai, K. Maskell, and C. Johnson},
+  TITLE =        {2001: Climate Change 2001: The Scientific Basis},
+  JOURNAL =      {Cambridge University Press},
+  YEAR =         {2001},
+}
+@ARTICLE{99ABF,
+  AUTHOR =       {P. Angot, C-H Bruneau, P. Fabrie},
+  TITLE =        {A penalization method to take into account obstacles in viscous flows.},
+  JOURNAL =      {Numerische Mathematik},
+  YEAR =         {1999},
+  volume =       {81},
+  number =       {497-520},
+}
+
+% ------------------------------------------------------------------------

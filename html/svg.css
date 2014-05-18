@@ -1,0 +1,56 @@
+#radial {
+	display: inline;
+}
+
+#rect {
+	display: inline;
+}
+
+#svg-radial {
+	border: 1px solid black;
+	background: #FFFF99;
+}
+
+#svg-rect {
+	border: 1px solid black;
+}
+
+.radial-angles {
+	stroke: purple;
+	stroke-width: 2px;
+	fill: none;
+}
+
+.radial-circles {
+	stroke: green;
+	stroke-width: 2px;
+	fill:none;
+}
+
+.central-circle {
+	fill: #66FFFF;
+}
+
+.circle {
+	stroke: red;
+	stroke-width: 3px;
+}
+
+.rect {
+	stroke: none;
+}
+
+.axis {
+	stroke: black;
+	stroke-width: 2px;
+}
+
+#outer-rect {
+	stroke: none;
+	fill: #FFFF99;
+}
+
+.tick {
+	stroke: black;
+	stroke-width: 2px;
+}

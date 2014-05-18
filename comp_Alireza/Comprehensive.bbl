@@ -1,0 +1,224 @@
+\begin{thebibliography}{10}
+
+\bibitem{Interview_GeorgePapanicolaou}
+{George Papanicolaou} from stanford university in an interview with science
+  watch correspondent {Gary Taubes}.
+
+\bibitem{ZoltanHomePage}
+Erik Boman, Karen Devine, Lee~Ann Fisk, Robert Heaphy, Bruce Hendrickson, Vitus
+  Leung, Courtenay Vaughan, Umit Catalyurek, Doruk Bozdag, and William
+  Mitchell.
+\newblock {Zoltan} home page.
+\newblock \url{http://www.cs.sandia.gov/Zoltan}, 1999.
+
+\bibitem{ZoltanUsersGuideV3}
+Erik Boman, Karen Devine, Lee~Ann Fisk, Robert Heaphy, Bruce Hendrickson,
+  Courtenay Vaughan, Umit Catalyurek, Doruk Bozdag, William Mitchell, and James
+  Teresco.
+\newblock {\em {Zoltan 3.0}: Parallel Partitioning, Load-balancing, and Data
+  Management Services; User's Guide}.
+\newblock Sandia National Laboratories, Albuquerque, NM, 2007.
+\newblock Tech. Report SAND2007-4748W
+  \url{http://www.cs.sandia.gov/Zoltan/ug_html/ug.html}.
+
+\bibitem{ZoltanDevelopersGuideV3}
+Erik Boman, Karen Devine, Lee~Ann Fisk, Robert Heaphy, Bruce Hendrickson,
+  Courtenay Vaughan, Umit Catalyurek, Doruk Bozdag, William Mitchell, and James
+  Teresco.
+\newblock {\em {Zoltan 3.0}: Parallel Partitioning, Load-balancing, and Data
+  Management Services; Developer's Guide}.
+\newblock Sandia National Laboratories, Albuquerque, NM, 2007.
+\newblock Tech. Report SAND2007-4749W,
+  \url{http://www.cs.sandia.gov/Zoltan/dev_html/dev.html}.
+
+\bibitem{ZoltanParHypRepart07}
+U.V. Catalyurek, E.G. Boman, K.D. Devine, D.~Bozdag, R.T. Heaphy, and L.A.
+  Riesen.
+\newblock Hypergraph-based dynamic load balancing for adaptive scientific
+  computations.
+\newblock In {\em Proc. of 21st International Parallel and Distributed
+  Processing Symposium (IPDPS'07)}. IEEE, 2007.
+\newblock Best Algorithms Paper Award.
+
+\bibitem{JFM_2005}
+Giuliano {De Stefano}, Daniel~E. Goldstein, and Oleg~V. Vasilyev.
+\newblock On the role of sub-grid scale coherent modes in large eddy
+  simulation.
+\newblock {\em Journal of Fluid Mechanics}, 525:263–--274,, 2005.
+
+\bibitem{POF_2010}
+Giuliano {De Stefano} and Oleg~V. Vasilyev.
+\newblock A fully adaptive wavelet-based approach to homogeneous turbulence
+  simulation.
+\newblock {\em Physics of Fluids}, submitted, 2010.
+
+\bibitem{JFM_2010}
+Giuliano {De Stefano} and Oleg~V. Vasilyev.
+\newblock Stochastic coherent adaptive large eddy simulation of forced
+  isotropic turbulence.
+\newblock {\em Journal of Fluid Mechanics}, 646:453--–470, 2010.
+
+\bibitem{POF_2008}
+Giuliano {De Stefano}, Oleg~V. Vasilyev, and Daniel~E. Goldstein.
+\newblock Localized dynamic kinetic-energy-based models for stochastic coherent
+  adaptive large eddy simulation.
+\newblock {\em Physics of Fluids}, 20:045102.1--045102.14, 2008.
+
+\bibitem{ZoltanOverviewArticle}
+Karen Devine, Erik Boman, Robert Heaphy, Bruce Hendrickson, and Courtenay
+  Vaughan.
+\newblock {Zoltan} data management services for parallel dynamic applications.
+\newblock {\em Computing in Science and Engineering}, 4(2):90--97, 2002.
+
+\bibitem{ZoltanHypergraphIPDPS06}
+Karen~D. Devine, Erik~G. Boman, Robert~T. Heaphy, Rob~H. Bisseling, and Umit~V.
+  Catalyurek.
+\newblock Parallel hypergraph partitioning for scientific computing.
+\newblock IEEE, 2006.
+
+\bibitem{ASParis_Farge_1988}
+Marie Farge and Gabriel Rabreau.
+\newblock Transformee en ondelettes pour detecter et analyser les structures
+  coherentes dans les ecoulements turbulents bidimensionnels.
+\newblock {\em C. R. Academie des Sciences de Paris}, serie II(307):1479--1486,
+  1988.
+
+\bibitem{FTC_FargeSchneider_2001}
+Marie Farge and Kai Schneider.
+\newblock Coherent vortex simulation (cvs), a semi-deterministic turbulence
+  model using wavelets.
+\newblock {\em Flow, Turbulence and Combustion}, 6:393--426, 2001.
+
+\bibitem{CVS_POF_1999}
+Marie Farge, Kai Schneider, and Nicholas K.-R. Kevlahan.
+\newblock Non-gaussianity and coherent vortex simulation for two-dimensional
+  turbulence using an adaptive orthogonal wavelet basis.
+\newblock {\em Physics of Fluids}, 11(8):2187--2201, 1999.
+
+\bibitem{Ghosal_DynamicLocalModel_JFM_1995}
+S.~Ghosal, Thomas~S. Lund, Parviz Moin, and K.~Akselvoll.
+\newblock A dynamic localization model for large-eddy simulation of turbulent
+  flows.
+\newblock {\em Journal of Fluid Mechanics}, 286:229–255, 1995.
+
+\bibitem{POF_2004}
+Daniel~E. Goldstein and Oleg~V. Vasilyev.
+\newblock Stochastic coherent adaptive large eddy simulation method.
+\newblock {\em Physics of Fluids}, 16(7):2497--2513, 2004.
+
+\bibitem{JOT_2005}
+Daniel~E. Goldstein, Oleg~V. Vasilyev, and Nicholas K.-R. Kevlahan.
+\newblock Cvs and scales simulation of 3d isotropic turbulence.
+\newblock {\em Journal of Turbulence}, 6(37):1--20, 2005.
+
+\bibitem{Trilinos-Overview}
+Michael Heroux, Roscoe Bartlett, Vicki Howle~Robert Hoekstra, Jonathan Hu,
+  Tamara Kolda, Richard Lehoucq, Kevin Long, Roger Pawlowski, Eric Phipps,
+  Andrew Salinger, Heidi Thornquist, Ray Tuminaro, James Willenbring, and Alan
+  Williams.
+\newblock {An Overview of Trilinos}.
+\newblock Technical Report SAND2003-2927, Sandia National Laboratories, 2003.
+
+\bibitem{1089021}
+Michael~A. Heroux, Roscoe~A. Bartlett, Vicki~E. Howle, Robert~J. Hoekstra,
+  Jonathan~J. Hu, Tamara~G. Kolda, Richard~B. Lehoucq, Kevin~R. Long, Roger~P.
+  Pawlowski, Eric~T. Phipps, Andrew~G. Salinger, Heidi~K. Thornquist, Ray~S.
+  Tuminaro, James~M. Willenbring, Alan Williams, and Kendall~S. Stanley.
+\newblock An overview of the trilinos project.
+\newblock {\em ACM Trans. Math. Softw.}, 31(3):397--423, 2005.
+
+\bibitem{Trilinos-Users-Guide}
+Michael~A. Heroux and James~M. Willenbring.
+\newblock {Trilinos Users Guide}.
+\newblock Technical Report SAND2003-2952, Sandia National Laboratories, 2003.
+
+\bibitem{Trilinos-Dev-Guide}
+Michael~A. Heroux, James~M. Willenbring, and Robert Heaphy.
+\newblock {Trilinos Developers Guide}.
+\newblock Technical Report SAND2003-1898, Sandia National Laboratories, 2003.
+
+\bibitem{Trilinos-Dev-Guide-II}
+Michael~A. Heroux, James~M. Willenbring, and Robert Heaphy.
+\newblock {Trilinos Developers Guide Part II: ASCI Software Quality Engineering
+  Practices Version 1.0}.
+\newblock Technical Report SAND2003-1899, Sandia National Laboratories, 2003.
+
+\bibitem{WDNS_1996}
+Kai~Schneider Jochen~Fröhlich.
+\newblock Numerical simulation of decaying turbulence in an adaptive wavelet
+  basis.
+\newblock {\em Applied and Computational Harmonic Analysis}, 3:393--397, 1996.
+
+\bibitem{Book_Turbulence_Jovanovic}
+Jovan Jovanovi\'{c}.
+\newblock {\em The Statistical Dynamics of Turbulence}.
+
+\bibitem{Book_Turbulence_Lesieur}
+Marcel Lesieur.
+\newblock {\em Turbulence in Fluids}.
+\newblock 4th edition.
+
+\bibitem{AIAA_2006}
+Qianlong Liu and Oleg~V. Vasilyev.
+\newblock Hybrid adaptive wavelet collocation-brinkman penalization method for
+  dns and urans simulations of compressible flow around bluff bodies.
+\newblock {\em AIAA Paper No. 2006-3206}, 2006.
+
+\bibitem{lundgren:2003}
+T.S. Lundgren.
+\newblock Linearly forced isotropic turbulence.
+\newblock {\em Annual Research Briefs}, pages 461--473, 2003.
+
+\bibitem{DNS_Biggest_2002}
+A.~Uno T.~Ishihara M.~Yokokawa, K.~Itakura and Y.~Kaneda.
+\newblock 16.4-tflops direct numerical simulation of turbulence by a fourier
+  spectral method on the earth simulator.
+\newblock Baltimore MD, 2002.
+
+\bibitem{MeneveauLund_DynamicSmagorinskyModel__POF_1997}
+Charles Meneveau and Thomas~S. Lund.
+\newblock The dynamic smagorinsky model and scale-dependent coefficients in the
+  viscous range of turbulence.
+\newblock {\em Physics of Fluids}, 9:3932, 1997.
+
+\bibitem{Meneveau_LagrangianSGS_JFM_1996}
+Charles Meneveau, Thomas~S. Lund, and William~H. Cabot.
+\newblock A lagrangian dynamic subgrid-scale model of turbulence.
+\newblock {\em Journal of Fluid Mechanics}, 319:353--–385, 1996.
+
+\bibitem{DLES8_2010}
+AliReza Nejadmalayeri, Oleg~V. Vasilyev, Alexei Vezolainen, and Giuliano~De
+  Stefano.
+\newblock Spatially variable thresholding for stochastic coherent adaptive les.
+\newblock In {\em accepted for Proceedings of Direct and Large-Eddy Simulation
+  Workshop 8}. Eindhoven University of Technology, the Netherlands,, 2010.
+
+\bibitem{PetrotGadebusch_SelfAdaptingModel_POF_2007}
+J.~Blair Perot and Jason Gadebusch.
+\newblock A self-adapting turbulence model for flow simulation at any mesh
+  resolution.
+\newblock {\em Physics of Fluids}, 19(11):115105.1--115105.11, 2007.
+
+\bibitem{Trilinos-Tutorial}
+Marzio Sala, Michael~A. Heroux, and David~M. Day.
+\newblock {Trilinos Tutorial}.
+\newblock Technical Report SAND2004-2189, Sandia National Laboratories, 2004.
+
+\bibitem{ARFM_2010}
+Kai Schneider and Oleg~V. Vasilyev.
+\newblock Wavelet methods in computational fluid dynamics.
+\newblock {\em Annual Review of Fluid Mechanics}, 42:473--503, 2010.
+
+\bibitem{JCP_2000}
+Oleg~V. Vasilyev and Christopher Bowman.
+\newblock Second generation wavelet collocation method for the solution of
+  partial differential equations.
+\newblock {\em Journal of Computational Physics}, 165:660--693, 2000.
+
+\bibitem{JOT_2008}
+Oleg~V. Vasilyev, Giuliano {De Stefano}, Daniel~E. Goldstein, and Nicholas
+  K.-R. Kevlahan.
+\newblock Lagrangian dynamic sgs model for scales of isotropic turbulence.
+\newblock {\em Journal of Turbulence}, 9(11):1--14, 2008.
+
+\end{thebibliography}

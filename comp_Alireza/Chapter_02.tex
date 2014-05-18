@@ -1,0 +1,138 @@
+\chapter{Spatially Variable Thresholding}
+\label{thresholdchapter}
+
+
+Previous studies, e.g. \cite{JOT_2005}, demonstrated that in SCALES, the SGS dissipation  is proportional to  $\epsilon ^2$;
+therefore, one can enhance SCALES by exploiting spatially-varying $\epsilon$  based on local SGS dissipation
+$\Pi = -\tau_{ij}^* %\bareps[S]_{ij}
+               {{\left.\red\overline{\bl S}_{\bl ij} \rule{-8pt}{6pt}\right.}^{\red {\scriptscriptstyle >} \epsilon}}
+               $.
+This implies that rate of local-transfer of energy from
+energetic-resolved-eddies to unresolved-less-energetic structures can be controlled by varying the thresholding-factor.
+Therefore, the idea is to locally vary $\epsilon$ wherever $\Pi$ deviates from a priori defined goal-value.
+A decrease of the thresholding level results in the local grid refinement with subsequent rise of the resolved viscous dissipation, while an increase of $\epsilon$ coarsens the mesh resulting in  the growth of the local SGS dissipation.
+%
+%
+%This corresponds to the fact that due to wavelet-thresholding-filter,
+%the resolved-scales depend on the thresholding parameter as follows:
+%\[
+%  \begin{array}{rl}
+%     \epsilon \downarrow &\Rightarrow \mbox{build-up scales} , \\
+%     \epsilon \uparrow   &\Rightarrow \rm{lose \; some \; scales}.
+%  \end{array}
+%\]
+%\noindent
+%
+However, in order to vary  $\epsilon$ in a physically consistent fashion, it should follow the local flow structures as they evolve in space and time. This necessitates the Lagrangian representation of  $\epsilon$, which is achieved using the  Lagrangian Path-Line Diffusive Averaging approach \cite{JOT_2008}:
+\begin{equation}
+        \label{eq:LagPathLineDiffAvg1} \vspace*{3pt}
+        \partial_{t}{\epsilon}
+        + \bareps[u]_j \partial_{x_j}{\epsilon}
+        = - {\rm forcing_{term} }
+        + \nu_{\epsilon} \partial_{x_jx_j}^2{\epsilon} .
+\end{equation}
+%
+For the sake of efficiency, instead of solving Eq.~(\ref{eq:LagPathLineDiffAvg1}) for the evolution of $\epsilon$, the linear-interpolation along characteristics, similar to the idea of Meneveau et. al \cite{Meneveau_LagrangianSGS_JFM_1996}, is performed
+\begin{equation}
+        \label{eq:LagPathLineDiffAvg2} \vspace*{3pt}
+        \frac 1 {\Delta t} \left[ \epsilon^{\rm new} \left( {\mathbf x},t+\Delta t\right)
+                                - \epsilon^{\rm old} \left( {\mathbf x}-\bareps[{\mathbf u}] \Delta t,t\right) \right]
+        = {\rm - forcing_{term} }.
+\end{equation}
+The use of linear interpolation results in sufficient numerical diffusion, thus, eliminating the need for explicit diffusion.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Possible For Deletion
+%
+%Results for a scalar-transport test case showed a very diffusive transport as expected.
+%The forcing term is used to adjusts the threshold value using a simple feedback procedure that is based on   prescribed goal-value of SGS dissipation.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\noindent
+%To visually (quantitatively) ensure the that linear-interpolation along characteristics is diffusive enough, a 2D/3D scalar-transport case
+% ($
+%        \label{eq:2D3DtestIterpolation} \vspace*{3pt}
+%        \partial_{t}{U}
+%        + \left( C \cdot \nabla \right) U
+%        = 0
+%$)
+%where epsilon was initialized inside an arbitrarily (in 2D triangular and circular) spot and then transported along characteristic lines with gird adapted to $\epsilon$ itself was preformed. The results showed a very diffusive scalar-transport as expected.
+%\noindent
+The proposed spatially variable thresholding strategy  ensures that the wavelet threshold is not {\em a priori} prescribed but determined on the fly by desired turbulence resolution.
+%
+%
+%\subsecspace
+%\subsection{Forcing Term}
+%
+%
+In this work two different mechanisms for the forcing term are studied:
+\begin{description}
+%
+  \item[FT1]{   The local fraction SGSD (FSGSD) is defined as
+               $\frac{\Pi }  {  \varepsilon_{\rm res}  +  \Pi }$,
+               where \linebreak[4]
+               \mbox{$\varepsilon_{\rm res} = 2 \nu
+               %\bareps[S]_{ij} \bareps[S]_{ij}
+               {{\left.\red\overline{\bl S}_{\bl ij} \rule{-8pt}{6pt}\right.}^{\red {\scriptscriptstyle >} \epsilon}}
+               {{\left.\red\overline{\bl S}_{\bl ij} \rule{-8pt}{6pt}\right.}^{\red {\scriptscriptstyle >} \epsilon}}$}
+               is the resolved viscous dissipation.
+               The idea is to maintain FSGD at a ``Goal'' value which means retain $\Pi$ at
+               $\varepsilon_{\rm res} \frac {\rm Goal}{1-{\rm Goal}}$.
+               The first forcing type (FT1) is an attempt to implement this while normalizing the forcing term based on its time average:
+%
+              \begin{equation}
+                  \label{eq:FT1_3} \vspace*{3pt}
+                  {\rm  forcing_{term} } =
+                  \epsilon^{\rm old} \left( {\mathbf x}-\bareps[{\mathbf u}] \Delta t,t\right)
+                  C_{{\rm f}_{\epsilon}} \;
+                  \frac {\Pi - \varepsilon_{\rm res}  \frac {\rm Goal}{1-{\rm Goal}}} {\rm TAF} ,
+              \end{equation}
+%
+             \noindent
+             where ${\rm TAF}$ stands for the time average of the forcing, is the time average of
+             $|\Pi - \varepsilon_{\rm res}  \frac {\rm Goal}{1-{\rm Goal}}|$.
+             %and $C_{f_{\epsilon}}$.
+             %is a constant coefficient which is set to 400.
+             %The intentional choice of $400$ is to make the time response of FT1 about three to four times faster than
+             %large eddy turnover time which is discussed in the next section.
+             The forcing constant coefficient, $C_{{\rm f}_{\epsilon}}$, is intentionally set to 400
+             in order to make the time response of FT1 about three to four times faster than
+             large eddy turnover time which is discussed in the next section.
+}
+ \vspace{6pt}
+  \item[FT2]{   In this approach, the variations of local-FSGSD is controlled directly based on the goal-value
+               in conjunction with a relaxation time parameter (time-scale), $\tau_{\epsilon}$,
+%
+               \begin{equation}
+                   \label{eq:FT2_1} \vspace*{3pt}
+                   {\rm  forcing_{term} } =
+                   \epsilon^{\rm old} \left( {\mathbf x}-\bareps[{\mathbf u}] \Delta t,t\right)
+                   \frac 1 \tau_{\epsilon}
+                   \left( \frac{\Pi }  {  \varepsilon_{\rm res}  +  \Pi }  -  {\rm Goal} \right).
+               \end{equation}
+%
+               Following the time-varying threshold studies \cite{POF_2010},
+               a time-scale associated to the characteristic rate-of-strain is chosen:
+               $\tau_{\epsilon}^{-1} = \langle {|
+               %\bareps[S]
+               {{\left.\red\overline{\bl S}_{\bl ij} \rule{-8pt}{6pt}\right.}^{\red {\scriptscriptstyle >} \epsilon}}
+              %{{\left.\red\overline{\bl S}_{\bl ij} \rule{-8pt}{10pt}\right.}^{\red {\scriptscriptstyle >} \epsilon}}
+               |} \rangle$.
+
+}
+\end{description}
+
+
+%\begin{itemize}
+%  \item sss
+%  \item sss
+%\end{itemize}
+%
+%\begin{enumerate}
+%  \item ssss
+%  \item ssss
+%\end{enumerate}
+
+
+
+
+
+

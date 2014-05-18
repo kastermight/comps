@@ -1,0 +1,131 @@
+%\documentclass[defaultstyle,11pt]{thesis}
+\documentclass[defaultstyle,11pt]{thesis2side}
+%\documentclass[draft,11pt]{thesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%  see documentation for information about  %%%%%%%%%%
+%%%%%%%%%%%  the options (11pt, defaultstyle, etc.)   %%%%%%%%%%
+%%%%%%%  http://www.colorado.edu/its/docs/latex/thesis/  %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       \documentclass[typewriterstyle]{thesis}o
+%       \documentclass[modernstyle]{thesis}
+%       \documentclass[modernstyle,11pt]{thesis}
+%       \documentclass[modernstyle,12pt]{thesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%    load any packages which are needed    %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{latexsym}       % to get LASY symbols
+\usepackage{graphicx}       % to insert PostScript figures
+\usepackage{rotating}       % for sideways tables/figures
+\usepackage{color}
+\usepackage{subfigure}
+
+%%%%%%%%%%%%%% qianlong add starts
+\usepackage{amsmath}
+
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+
+
+\def\etal{{\em et al.\ }}
+\def\etc{etc.\ }
+\def\eg{{\em e.g.\ }}
+\def\ie{{\em i.e.\ }}
+\def\etaT{\eta_{\mbox{\tiny$T$}}}
+\def\alphaT{\alpha_{\mbox{\tiny$T$}}}
+\def\drawline#1#2{\raise 2.5pt\vbox{\hrule width #1pt height #2pt}}
+\def\spacce#1{\hskip #1pt}
+\def\solid{\drawline{24}{.5}\nobreak\ }
+\def\bdash{\hbox{\drawline{4}{.5}\spacce{2}}}
+\def\dashed{\bdash\bdash\bdash\bdash\nobreak\ }
+
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+
+\title{Comprehensive Exam Write-up: Ocean Circulation Modeling using Adaptive Wavelet Methods}
+
+\author{Shanon M.}{Reckinger}
+
+\otherdegrees{B.A., Mathematics, University of St. Thomas, 2006 \\
+          B.S., ME, University of St. Thomas, 2006 \\}
+
+\degree{Doctor of Philosophy}       %  #1 {long descr.}
+    {Ph.D., Mechanical Engineering}     %  #2 {short descr.}
+
+\dept{Department of}            %  #1 {designation}
+    {Mechanical Engineering}        %  #2 {name}
+
+\advisor{}             %  #1 {title}
+    {Prof. Oleg V. Vasilyev}          %  #2 {name}
+
+%\readerOne{Prof.~Oleg V. Vasilyev}     %  1st person to sign thesis
+\reader{Prof.~David R. Kassoy}       %  2nd person to sign thesis
+\readerThree{Prof.~Olivier Desjardins}     %  3rd person to sign thesis
+\readerFour{Prof.~Baylor Fox-Kemper}     %  4th person to sign thesis
+\readerFive{Prof.~Daven Henze}       %  5th person to sign thesis
+
+
+\abstract{  \OnePageChapter % one page only ??
+This work applies the adaptive wavelet collocation methodology to various sets of equations that govern the ocean, with the goal of being able to more accurately predict global ocean circulation.  This work also improves the representation of continental topology and bottom bathymetry for use in ocean circulation models through an extension of the Brinkman penalization method. Due to the complicated geometry inherent in ocean boundaries, the stair-step representation used in the majority of current global ocean circulation models causes accuracy and stability problems. Brinkman penalization is a numerical technique used to enforce no slip boundary conditions through the addition of a term to the governing equations. When coupled with the Adaptive Wavelet Collocation Method, which solves the penalized equations on a temporally and spatially varying mesh, the flow near the boundary can be well defined for less computational cost. }
+
+%\dedication[Dedication]{    % NEVER use \OnePageChapter here.
+%    \begin{center}To Scott\end{center}
+%    }
+    
+%    \acknowledgements{  \OnePageChapter % *MUST* BE ONLY ONE PAGE!
+
+%Thank you.  
+
+%}
+
+\ToCisShort % a 1-page Table of Contents ??
+
+\LoFisShort % a 1-page List of Figures ??
+%   \emptyLoF   % no List of Figures at all ??
+
+\LoTisShort % a 1-page List of Tables ??
+%   \emptyLoT   % no List of Tables at all ??
+
+
+\begin{document}
+
+\input macros.tex       % file containing author's macro definitions
+\input chapter1.tex         % file with Chapter 1 contents
+\input chapter2.tex         % file with Chapter 2 contents
+\input chapter3.tex         % file with Chapter 3 contents
+\input chapter4.tex         % file with Chapter 4 contents
+\input chapter5.tex         % file with Chapter 5 contents
+\input chapter6.tex         % file with Chapter 6 contents
+%\input chapter7.tex          % file with Chapter 7 contents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%  Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{plain}   % or "siam", or "alpha", or "abbrv"
+                % see other styles (.bst files) in
+                % $TEXHOME/texmf/bibtex/bst
+
+%\nocite{*}      % list all refs in database, cited or not.
+
+\bibliography{Bibliography/references,Bibliography/bibliography_Vasilyev,Bibliography/bibliography_Brinkman,Bibliography/bibliography_wlt,Bibliography/bibliography_CFD,Bibliography/bibliography_Povitsky,Bibliography/ocn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%  Appendices %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\appendix   % don't forget this line if you have appendices!
+
+%\input appA.tex         % file with Appendix A contents
+%\input appB.tex         % file with Appendix B contents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%   THE END   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

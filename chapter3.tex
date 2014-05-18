@@ -1,0 +1,16 @@
+%!TEX root = comps_NKasimov.tex
+\chapter{New Volume Penalization Methods}
+\label{chapter:3}
+\section{Brinkman-like Penalization for Low Fidelity Simulations}
+Due to the coarse grid used in Lo-Fi simulations slightly modified BP methods was developed, in order to match drag force that drives particles obtained numerically with experimental results. The idea is to introduce momentum penalization term which is quadratic in velocity
+\begin{align}
+\frac {\pt \rho u_i}{\pt t} &= RHS - \frac \chi \eta \rho \rbr{u_i - U_i^o}^2.
+\end{align}
+From one hand, it forces the solution to the proper value at the obstacle boundary even faster than in case of simple BP, on the other hand this expression makes modeling of the penalization easier and flow independent. Namely, 
+\begin{align}
+F_{drag} &= \int\displaylimits_\Omega \frac 1 \eta \rho \rbr{u - U^o}^2\ dV = \int \displaylimits_A \frac 12 \rho C_d \rbr{u - U^o}^2\ dA, \label{eq:lofi-penal}
+\end{align}
+where $\Omega$ is the volume of the obstacle, and $A$ is largest cross section are across the flow and $\chi$ is dropped since integration is performed only inside of the obstacle. For the sake of simplicity, let us consider uniform flow around triaxial ellipsoid with semi axes $a,b$ and $c$. In that case $\Omega = \pi a b c$ and $A = \pi a b$, under the assumption that flow goes along $c$ semi axis. So, \eqref{eq:lofi-penal} simplifies into
+\begin{align}
+\frac {\pi a b c}\eta = \frac 12 \pi a b\ C_d \implies \eta = \frac c{2C_d}
+\end{align}•
