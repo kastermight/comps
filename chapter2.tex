@@ -59,7 +59,7 @@ One can also penalize temperature as well, in case such boundary condition is me
 \end{align}
 which mimics isothermal boundary condition $T|_{\pt \Omega} = T^o$ and can be incorporated to the energy equation through the full energy relation for ideal gas,
 \begin{align}
-\rho e &= \frac {\rho u_j u_j}2 + \rho c_VT = \frac {\rho u_j u_j}2 + \frac p{\gG - 1}.
+\rho e &= \frac {\rho u_j u_j}2 + \rho c_VT = \frac {\rho u_j u_j}2 + \frac p{\gG - 1} \label{eq:igeos}.
 \end{align}
 Results of BP implementation to supersonic inviscid flow are shown in Chapter 3 as a motivation for new VP method.
 
@@ -136,9 +136,35 @@ In Fig.~\ref{fig:visc} one may find viscosity field and corresponding Schlieren 
 \end{figure}
 
 \section{Riemann Problem and Riemann Solver}
-A Riemann problem consists of a conservation law together with piecewise constant data having a single discontinuity, or in other words, one or multiple hyperbolic equations with discontinuous initial conditions. As a such system one can consider Euler or Navier-Stokes equations. Either numerical or analytical technique to solve such a problem is called Riemann solver, accordingly. For non-linear problems, like Euler and Navier-Stokes, there are number of numerical Riemann solvers, such as Godunov Scheme, Flux Vector Splitting, Roe solver \cite{book:Toro}, etc. For Lo-Fi simulations of this project latter was used.
+A Riemann problem consists of a conservation laws together with piecewise constant data having a single discontinuity, or in other words, one or multiple hyperbolic equations with discontinuous initial conditions. As a such system one can consider Euler or Navier-Stokes equations. Either numerical or analytical technique to solve such a problem is called Riemann solver. For non-linear problems, like Euler and Navier-Stokes, there are number of numerical Riemann solvers, such as Godunov Scheme, Flux Vector Splitting, Roe solver \cite{book:Toro}, etc. For Lo-Fi simulations of this project latter was used.
 
-For the sake of simplicity, let us consider one dimensional Euler equations with discontinuous ICs.
+For the sake of simplicity, let us consider one dimensional Euler equations for ideal gas with discontinuous ICs. 
+\begin{align}
+\nonumber
+\frac {\pt \mathbf u}{\pt t} + \frac {\pt \mathbf F \rbr{\mathbf u}}{\pt x} = 0 \\
+\mathbf u = \fbrl{\begin{array}{ll}
+\mathbf u_L, & \md{if } x \le x_S \\
+\mathbf u_R, & \md{if } x > x_S
+\end{array}},
+\end{align}
+where 
+\begin{align}
+\mathbf u = \sbr{\begin{array}{c}\rho \\ \rho u \\ \rho e \end{array}}, \qquad \mathbf F = \sbr{\begin{array}{c}\rho u \\ \rho u^2 + p \\ u \rbr{\rho e + p}\end{array}},
+\end{align}
+and constitutive equation \eqref{eq:igeos} to close the system. This system can be rewritten in pseudo linear form
+\begin{align}
+\frac {\pt \mathbf u}{\pt t} + \mathcal A \rbr{\mathbf u}\frac {\pt \mathbf u}{\pt x} = 0,
+\end{align}
+where $\mathcal A$ is a Jacobian matrix of the flux $\mathbf F$ with respect to the solution vector $\mathbf u$, which has the following explicit relation
+\begin{align}
+\mathcal A = \sbr {\begin{array}
+
+\end{array}}
+\end{align}
+
+
+
+
 
 
 
