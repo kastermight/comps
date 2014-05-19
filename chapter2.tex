@@ -135,10 +135,10 @@ In Fig.~\ref{fig:visc} one may find viscosity field and corresponding Schlieren 
 \caption{Localized nature of wavelet function} \label{fig:visc}
 \end{figure}
 
-\section{Riemann Problem and Riemann Solver}
+\section{Riemann Problem and Riemann Solver of Roe}
 A Riemann problem consists of a conservation laws together with piecewise constant data having a single discontinuity, or in other words, one or multiple hyperbolic equations with discontinuous initial conditions. As a such system one can consider Euler or Navier-Stokes equations. Either numerical or analytical technique to solve such a problem is called Riemann solver. For non-linear problems, like Euler and Navier-Stokes, there are number of numerical Riemann solvers, such as Godunov Scheme, Flux Vector Splitting, Roe solver \cite{book:Toro}, etc. For Lo-Fi simulations of this project latter was used.
 
-For the sake of simplicity, let us consider one dimensional Euler equations for ideal gas with discontinuous ICs. 
+For the sake of simplicity, let us consider pseudo one dimensional Euler equations for ideal gas with discontinuous ICs.
 \begin{align}
 \nonumber
 \frac {\pt \mathbf u}{\pt t} + \frac {\pt \mathbf F \rbr{\mathbf u}}{\pt x} = 0 \\
@@ -149,20 +149,75 @@ For the sake of simplicity, let us consider one dimensional Euler equations for 
 \end{align}
 where 
 \begin{align}
-\mathbf u = \sbr{\begin{array}{c}\rho \\ \rho u \\ \rho e \end{array}}, \qquad \mathbf F = \sbr{\begin{array}{c}\rho u \\ \rho u^2 + p \\ u \rbr{\rho e + p}\end{array}},
+\mathbf u = \sbr{\begin{array}{c}\rho \\ \rho u \\ \rho v \\ \rho w \\ \rho e \end{array}}, \qquad \mathbf F = \sbr{\begin{array}{c}\rho u \\ \rho u^2 + p \\ \rho uv \\ \rho u w \\ u \rbr{\rho e + p}\end{array}},
 \end{align}
-and constitutive equation \eqref{eq:igeos} to close the system. This system can be rewritten in pseudo linear form
+and constitutive equation \eqref{eq:igeos} to close the system. It can be rewritten in pseudo linear form
 \begin{align}
-\frac {\pt \mathbf u}{\pt t} + \mathcal A \rbr{\mathbf u}\frac {\pt \mathbf u}{\pt x} = 0,
+\frac {\pt \mathbf u}{\pt t} + \mathcal A \rbr{\mathbf u}\frac {\pt \mathbf u}{\pt x} = 0, \label{eq:Euler}
 \end{align}
 where $\mathcal A$ is a Jacobian matrix of the flux $\mathbf F$ with respect to the solution vector $\mathbf u$, which has the following explicit relation
 \begin{align}
-\mathcal A = \sbr {\begin{array}
-1
-\end{array}}
+\mathcal A = \sbr {\begin{array}{ccccc}
+0 & 1 & 0 & 0 & 0 \\
+\hat \gG H - u^2 - a^2 & (3-\gG)u & -\hat \gG v  & -\hat \gG w & \hat \gG \\
+-u v & v & u & 0 & 0 \\
+-u w & w & 0 & u & 0 \\
+u \sbr{(\gG - 2)H - a^2} & H - \hat \gG u^2 & - \hat \gG u v & - \hat \gG u w & \gG u
+\end{array}}, \label{eq:matrix}
 \end{align}
+where $\hat \gG = \gG - 1$, $H = (\rho e + p)/\rho$ (Specific enthalpy) and $a = \sqrt{\gG p / \rho}$ (Local speed of sound). This matrix has eigenvalues 
+\begin{align}
+\gl_1 = u - a, \quad \gl_2 = \gl_3 = \gl_4 = u, \quad \gl_5 = u + a,
+\end{align}
+and eigenvectors
+\begin{align}
+\fbrr{\begin{array}{c}
+\mathbf K^{(1)} = \sbr{\begin{array}{c}
+1 \\ u - a \\ v \\ w \\ H - ua
+\end{array}}, \mathbf K^{(2)} = \sbr{\begin{array}{c}
+1 \\ u  \\ v \\ w \\ \frac 12 V^2
+\end{array}}, \mathbf K^{(3)} = \sbr{\begin{array}{c}
+0 \\ 0 \\ 1 \\ 0 \\ v
+\end{array}}, \\
+\mathbf K^{(4)} = \sbr{\begin{array}{c}
+0 \\ 0 \\ 0 \\ 1 \\ w
+\end{array}}, \mathbf K^{(5)} = \sbr{\begin{array}{c}
+1 \\ u + a \\ v \\ w \\ H + ua
+\end{array}}
+\end{array}}, \label{eq:eigenvecs}
+\end{align}
+where $V = \rbr{u^2+v^2+w^2}$.
 
+Equation \eqref{eq:Euler} can be numerically integrated as
+\begin{align}
+\mathbf u_i^{n+1} = \mathbf u_i^n + \frac {\gD t}{\gD x} \rbr{\mathbf F_{i - \frac 12} - \mathbf F_{i + \frac 12}},
+\end{align}
+where half-integer indices are introduced for convenience and to distinguish intercell values from cell values on chosen grid. Variety of Riemann solvers differ by the way they calculate those intercell values.
 
+Philip Roe proposed to calculate intercell fluxes using certain averaging procedure based on right and left values of corresponding local fluxes \cite{lib:Roe} as follows
+\begin{align}
+\begin{array}{c}
+\widetilde {\rbr \bullet} = \ds \frac {\sqrt {\rho_L} \rbr \bullet_L + \sqrt {\rho_R} \rbr \bullet_R}{\sqrt{\rho_L} + \sqrt{\rho_R}}
+\end{array},
+\end{align}
+where $\rbr \bullet$ stands for $u, v, w$ and $H$. After finding these averaged values, one also needs to find $\widetilde V$ and $\widetilde a$ as 
+\begin{align*}
+\widetilde V &= \widetilde u^2 + \widetilde v^2 + \widetilde w^2, \\
+\widetilde a &= \sbr{\hat \gG \rbr{\widetilde H - \frac 12 \widetilde V^2}}^{\frac 12}.
+\end{align*}
+Next step is to substitute all values defined in \eqref{eq:matrix}-\eqref{eq:eigenvecs} with averaged values. Finally, according to Roe, intercell flux can be found as
+\begin{align}
+\mathbf F_{i+\frac 12} = \frac 12 \rbr{\mathbf F_L + \mathbf F_R} - \frac 12 \sum_{j = 1}^5 	\widetilde \ga_j \lbr{\widetilde \gl_j} \widetilde {\mathbf K^j},
+\end{align}
+where $\ga_j$ is so called wave strength --- weight that takes into account contribution from each eigenvector. Roe's original approach is to calculate them as follows:
+\begin{align}
+\widetilde \ga_3 &= \gD u_3 - \widetilde v \gD u_1 \\
+\widetilde \ga_4 &= \gD u_4 - \widetilde w \gD u_1 \\
+\widetilde \ga_2 &= \frac {\hat \gG}{\widetilde a^2} \sbr{\gD u_1 \rbr{\widetilde H - \widetilde u^2} + \widetilde u \gD u_2 - \overline{\gD u_5}} \\
+\widetilde \ga_1 &= \frac 1{2 \widetilde a} \sbr{\gD u_1 \rbr{\widetilde u + \widetilde a} - \gD u_2 - \widetilde a \widetilde \ga_2} \\
+\widetilde \ga_5 &= \gD u_1 - \rbr{\widetilde \ga_1 + \widetilde \ga_2},
+\end{align}
+where $\gD \mathbf u = \mathbf u_R - \mathbf u_L$ and $\overline{\gD u_5} = \gD u_5 - \widetilde \ga_3 \widetilde v - \widetilde \ga_4 \widetilde w$. $\mathbf u$ --- is a solution vector. This procedure can be naturally extended to the full 3D case, with simple directional rotation of coordinate system and considering each direction as flow direction in pseudo one dimensional problem.
 
 
 

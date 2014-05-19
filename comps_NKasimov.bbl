@@ -50,4 +50,8 @@ W.~Sweldens and P.~Shroder, {\em Wavelets in the Geosciences}, vol.~90 of {\em
   Lecture Notes in Earth Sciences}, ch.~2, pp.~72--107.
 \newblock Springer, 2000.
 
+\bibitem{lib:Roe}
+P.~Roe, ``Approximate riemann solvers, parameter vectors, and difference
+  schemes,'' {\em J. Comp. Phys.}, vol.~43, no.~2, pp.~357--372, 1981.
+
 \end{thebibliography}

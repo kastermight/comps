@@ -1,53 +1,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% thesis.cls - LaTeX2e class for CU Theses.
-%% To conform to the University of Colorado at Boulder
-%%	Graduate School SPECIFICATIONS (April 2010) for
-%%	Preparation of Master's Thesis and Doctoral Dissertations
-%% Version 1.00 written by John P. Weiss, 1997
+%% thesis2side.cls    ---- for compressed, 2-sided prints of a thesis.
+%%	For official thesis, use thesis.cls instead.  THIS file,
+%%	thesis2side.cls, does NOT conform to the University of Colorado
+%%	(Boulder) Graduate School specifications since it permits
+%%	odd-numbered pages to have different left margin than
+%%	even-numbered pages, as well as allowing other size adjustments.
+%%	However, it does make better paper-saving printouts...
+%%	Edit any of the lines below which have the word "EDIT" --
+%%	lines 199-201, 251-253, and 262-267.  USE WITH CAUTION.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%	version 1.12, Hongcheng Ni, March 2014 -- added title before
-%%              the advisor's name in the signature page
-%%	version 1.11, Bruce Fast, April 2008 -- changed left margin
-%%		from 1.75" to 1", and added \IRBprotocol option
-%%	version 1.10, E. Joshua Rigler, January 2003 -- making it safe
-%%		for folks who inadvertently load setspace.sty, changed
-%%		\latex@xfloat to \latexx@xfloat
-%%	version 1.09, BF, November 2000 -- conforms to revised specs
-%%		no significant changes required
-%%	version 1.08, Steven V Penton, September 1999 -- added
-%%		\readerFive; moved list of tables in front of figures
-%%	version 1.07, BF, January 1999 -- fixed \LoFisShort etc.
-%%	version 1.06, BF, November 1998 -- fixed level 4 headers;
-%%		SubSubSections, inline4 & nonum4.  Eliminated
-%%		unwanted space before chapter/section numbers.
-%%	version 1.05, BF, August 1998 -- Footnotes and floats
-%%		(captions) now singlespaced, fixing an omission
-%%		in v1.04.  Fixed value of \belowcaptionskip,
-%%		for table captions.
-%%	version 1.04, BF, July 1998, Adjusted doublespacing
-%%		(no longer uses setspace.sty) and margin values.
-%%	version 1.03, May 1998, Bruce Fast -- Added optional
-%%		\readerThree{}, \readerFour{}; LoF/LoT debugging;
-%%		doublespaced abstract
+%%	Based on version 1.09 of thesis.cls (November 2000)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{thesis}[2014/03/24]	% version 1.12
-
+\ProvidesClass{thesis2side}[2000/11/03]
 \typeout{}
-\typeout{--------------------------------------------------------------}
-\typeout{ +---+ Thesis Style (thesis.cls) version 1.12}
-\typeout{ +---+ for University of Colorado Ph.D. theses/dissertations.}
-\typeout{ * Conforms to the University of Colorado at Boulder Graduate}
-\typeout{ * School "SPECIFICATIONS for Preparation of Master's Thesis}
-\typeout{ * and Doctoral Dissertations" (rev. March 2014).}
-\typeout{--------------------------------------------------------------}
-\typeout{ URL: http://www.colorado.edu/oit/software-hardware/tex-latex}
+\typeout{------------------------------------------------------------}
+\typeout{ +---+ *****  thesis2side.cls  *****}
+\typeout{ +---+ For compressed, 2-sided printings of thesis.}
+\typeout{ * Does NOT conform to the University of Colorado at Boulder}
+\typeout{ * because left margins (and other sizes) are adjustable.}
+\typeout{ *	READ THIS:}
+\typeout{ * You may copy this file to your own directory and edit}
+\typeout{ * the margins/linespacing/sizes further, for your own}
+\typeout{ * purposes; look for the lines with the word "EDIT".}
+\typeout{------------------------------------------------------------}
+\typeout{ URL: http://www.Colorado.EDU/ITS/docs/latex/ThesisClass}
 \typeout{}
-
-% Certain options are not handled here but are passed on to report.cls
-% by \PassOptionToClass.
-
 \DeclareOption{fleqn}{ \PassOptionsToClass{fleqn}{report} }
 \DeclareOption{leqno}{ \PassOptionsToClass{leqno}{report} }
 \DeclareOption{openbib}{ \PassOptionsToClass{openbib}{report} }
@@ -58,38 +36,40 @@
 \DeclareOption{10pt}{ \PassOptionsToClass{10pt}{report} }
 \DeclareOption{11pt}{ \PassOptionsToClass{11pt}{report} }
 \DeclareOption{12pt}{ \PassOptionsToClass{12pt}{report} }
-
-% Invalid options - normally used in report.cls and others, but not here:
-
 \DeclareOption{titlepage}
-   {\ClassWarning{thesis}{Title page always generated. Option ignored.}}
+   {\ClassWarning{thesis2side}
+	{Title page always generated. Option ignored.}}
 \DeclareOption{notitlepage}
-   {\ClassWarning{thesis}{Option 'notitlepage' not available for thesis.}}
-\DeclareOption{twoside}
-   {\ClassWarning{thesis}{Option 'twoside' not available for thesis.}}
+   {\ClassWarning{thesis2side}
+	{Option 'notitlepage' not available for thesis2side.}}
 \DeclareOption{twocolumn}
-   {\ClassWarning{thesis}{Option 'twocolumn' not available for thesis.}}
+   {\ClassWarning{thesis2side}
+	{Option 'twocolumn' not available for thesis2side.}}
 \DeclareOption{landscape}
-   {\ClassWarning{thesis}{Option 'landscape' not available for thesis.}}
+   {\ClassWarning{thesis2side}
+	{Option 'landscape' not available for thesis2side.}}
 \DeclareOption{legalpaper}
-   {\ClassWarning{thesis}{Option 'legalpaper' not available for thesis.}}
+   {\ClassWarning{thesis2side}
+	{Option 'legalpaper' not available for thesis2side.}}
 \DeclareOption{a4paper}
-   {\ClassWarning{thesis}{Option 'a4paper' not available for this class.}}
+   {\ClassWarning{thesis2side}
+	{Option 'a4paper' not available for this class.}}
 \DeclareOption{a5paper}
-   {\ClassWarning{thesis}{Option 'a5paper' not available for this class.}}
+   {\ClassWarning{thesis2side}
+	{Option 'a5paper' not available for this class.}}
 \DeclareOption{executivepaper}
-   {\ClassWarning{thesis}{Option 'executivepaper' not available.}}
+   {\ClassWarning{thesis2side}
+	{Option 'executivepaper' not available.}}
 \DeclareOption{b5paper}
-   {\ClassWarning{thesis}{Option 'b5paper' not available for this class.}}
+   {\ClassWarning{thesis2side}
+	{Option 'b5paper' not available for this class.}}
 \DeclareOption{letterpaper}
-   {\ClassWarning{thesis}{Option 'letterpaper' superfluous. Ignored.}}
+   {\ClassWarning{thesis2side}
+	{Option 'letterpaper' superfluous. Ignored.}}
 \DeclareOption{onecolumn}
-   {\ClassWarning{thesis}{Option 'onecolumn' superfluous.  Ignored.}}
-\DeclareOption{oneside}
-   {\ClassWarning{thesis}{Option 'oneside' superfluous.  Ignored.}}
-
-%%%%%%%%%%% CUSTOM OPTIONS:
-% Options for no decimal numbering, or decimal number nested over 3 deep:
+   {\ClassWarning{thesis2side}
+	{Option 'onecolumn' superfluous.  Ignored.}}
+\DeclareOption{twoside}{\@twosidetrue  \@mparswitchtrue}
 \newif\if@AllHeadings
 \newif\if@NumberStdHeadings
 \newif\if@PerChptrNumbering
@@ -151,39 +131,22 @@
 	\@centerChaptertrue\@centerSectionfalse\@chapterCapsfalse
 	\@inlineSubSubSectionfalse\@numberSubSubSectiontrue
 	\@boldheadtrue\@fixedHeadSzfalse}
-
-% Now we load the report class with certain options by default.  It
-% will process any other options specified.  Then, we process the
-% options for this class file.  Lastly, we load in the font option
-% file for the given font size.
-
 \ProcessOptions
-\LoadClass[letterpaper,oneside,onecolumn]{report}[1996/10/31]
-
-% Other required LaTeX2e packages: if your computer doesn't already
-% have these, you can copy them to your own directory (URL above):
-
+\LoadClass[letterpaper,twoside,onecolumn]{report}[1996/10/31]
 \RequirePackage{indentfirst}		% indentfirst.sty, 1995/11/23
 \RequirePackage{ifthen}			% ifthen.sty, 1996/08/02
 \RequirePackage[ULforem,normalbf]{ulem}	% ulem.sty, 1995/12/17
-
-
-%%%%%% SPECIAL INTERNAL COMMANDS.  Needed by later routines.
-
 % Create a command to be used for default arguments.
 \newcommand*{\th@DefArg}{aWfdRvV11f66GL00K5}
-
 % Now create a command to check for the default argument, and call the
 % command [in the first arg] appropriately.  Used for section heading
 % commands.
-
 \newcommand{\th@ExecChkOptArg}[3]{
 \ifthenelse{\equal{\th@DefArg}{#2}}{
 	#1{#3}
 	}{
 	#1[#2]{#3}}
 }
-
 % Controls the heading styles.  You can change the size to suit your needs.
 
 \if@fixedHeadSz
@@ -211,10 +174,8 @@
 \newcommand*{\th@SectionStyle}{\if@thInHeading\th@HdFnt\th@ScSz\fi}
 \newcommand*{\th@SubSectionStyle}{\if@thInHeading\normalsize\th@HdFnt\fi}
 \newcommand*{\th@OtherSecHeadStyles}{\if@thInHeading\normalsize\th@HdFnt\fi}
-
 % Re-define the emphasis commands to use either BOLDFACE or UNDERLINING,
 % depending on the startup flags.
-
 \newcommand*{\EmphReset}{
 	\if@emphisbold
 		\let\em\bfseries
@@ -223,24 +184,25 @@
 		\ULforem
 	\fi
 }
-
 % Makes the chapter heading label, putting it in the desired style.
 % We need to define it here, since we need it before redefining the
 % chapter commands.
-
 \newcommand*{\th@DoChapCenter}{\if@centerChapter\centering\fi}
 \newcommand*{\th@ChapHead}[1]{
 	\protect\th@ChapterStyle
 	\protect\th@DoChapCenter #1}
 
 
-%%%%%%% DEFINE DOUBLE-SPACING (THE DEFAULT) AND OTHER SPACING:
-\def\setspace@size{\ifx\@currsize\normalsize\@normalsize\else\@currsize\fi}
+% THE MAIN TEXT OF A THESIS IS "DOUBLE-SPACED" = "near 2.0";
+% DEFINE DOUBLE-SPACING (THE DEFAULT) AND OTHER SPACING:
 \def\doublespacing{ \ifcase \@ptsize \relax
-      \def \baselinestretch {2.004}%	10pt
-  \or \def \baselinestretch {1.771}%	11pt
-  \or \def \baselinestretch {1.660}%	12pt
+    \def \baselinestretch {2.004}% 10pt -- EDIT (thesis=2.004; see line 251)
+\or \def \baselinestretch {1.771}% 11pt -- EDIT (thesis=1.771; see line 252)
+\or \def \baselinestretch {1.660}% 12pt -- EDIT (thesis=1.660; see line 253)
   \fi \setspace@size}
+
+
+\def\setspace@size{\ifx\@currsize\normalsize\@normalsize\else\@currsize\fi}
 \def\singlespacing{\def \baselinestretch {1} \setspace@size \vskip \baselineskip}
 \def\setstretch#1{\renewcommand{\baselinestretch}{#1}}
 \def\@setsize#1#2#3#4{\@nomath#1
@@ -251,8 +213,8 @@
   width\z@} \skip\footins \baselinestretch\skip\footins
   \normalbaselineskip\baselineskip#3#4}
 %%%%%%%%% floats & footnotes singlespaced %%%%%%%%%
-\let\latexx@xfloat=\@xfloat
-\def\@xfloat #1[#2]{\latexx@xfloat #1[#2]
+\let\latex@xfloat=\@xfloat
+\def\@xfloat #1[#2]{\latex@xfloat #1[#2]
 \def\baselinestretch{1}\@normalsize \normalsize}
 \long\def\@footnotetext#1{
   \insert\footins{
@@ -286,48 +248,47 @@
 \def\endspacing{ \par \vskip \parskip \vskip \baselineskip
   \endgroup \vskip -\parskip \vskip -\baselineskip }
 \def\doublespace{ \ifcase \@ptsize \relax
-      \spacing{2.004}%	10pt
-  \or \spacing{1.771}%	11pt
-  \or \spacing{1.660}%	12pt
+      \spacing{2.004}%	10pt -- EDIT (thesis=2.004; see line 199)
+  \or \spacing{1.771}%	11pt -- EDIT (thesis=1.771; see line 200)
+  \or \spacing{1.660}%	12pt -- EDIT (thesis=1.660; see line 201)
   \fi }
 \let\enddoublespace=\endspacing
-
 
 
 %%%%% SET THE OVERALL DOCUMENT PROPERTIES, such as page numbering,
 % margins... Initialize several global document properties, but do so
 % *before* the beginning of the document to forces these changes.
 \AtBeginDocument{
-	\setlength{\topmargin}{-0.30in}
-	\setlength{\headheight}{0.20in}
-	\setlength{\headsep}{0.0in}
-	\setlength{\topskip}{0.40in}	% first line, down from page number
-	\setlength{\textheight}{9.10in}	% 9"-(topmargin+headsep+headheight)
-	\setlength{\footskip}{0pt}
-	\setlength{\oddsidemargin}{0.00in}
-	\setlength{\evensidemargin}{0.00in}
-	\setlength{\parindent}{0.40in}	% somewhere between 0.3" and 0.5"
-	\setlength{\textwidth}{6.50in}
-	\setlength{\leftmargini}{3.5em}
-	\setlength{\leftmarginii}{2.2em}
-	\setlength{\leftmarginiii}{2.2em}
-	\setlength{\leftmarginiv}{2.2em}
-	\setlength{\leftmarginv}{2.2em}
-	\setlength{\leftmarginvi}{2.2em}
-	\setlength{\leftmargin}{\leftmargini}
-	\setlength{\labelsep}{.5em}
-	\setlength{\labelwidth}{ 1.5em}
-	\pagenumbering{arabic}
-	\pagestyle{myheadings}
-	\markright{}
-	\onecolumn
-	\raggedbottom
-	\normalsize
-	\normalfont
-	\EmphReset	% bold or underlined?
-	\doublespacing	% footnotes and floats still singlespaced
-	\setcounter{tocdepth}{2}
-	\setcounter{secnumdepth}{\value{th@SecNum}}
+    \setlength{\topmargin}{-0.30in}
+    \setlength{\headheight}{0.20in}
+    \setlength{\headsep}{0.0in}
+    \setlength{\topskip}{0.40in}    % first line, down from page number
+    \setlength{\textheight}{9.10in} % 9"-(topmargin+headsep+headheight)
+    \setlength{\footskip}{0pt}
+    \setlength{\oddsidemargin}{0.75in}
+    \setlength{\evensidemargin}{0.05in}
+    \setlength{\parindent}{30pt}    % somewhere between 0.3" and 0.5"
+    \setlength{\textwidth}{5.75in}
+    \setlength{\leftmargini}{3.5em}
+    \setlength{\leftmarginii}{2.2em}
+    \setlength{\leftmarginiii}{2.2em}
+    \setlength{\leftmarginiv}{2.2em}
+    \setlength{\leftmarginv}{2.2em}
+    \setlength{\leftmarginvi}{2.2em}
+    \setlength{\leftmargin}{\leftmargini}
+    \setlength{\labelsep}{.5em}
+    \setlength{\labelwidth}{ 1.5em}
+    \pagenumbering{arabic}
+    \pagestyle{myheadings}
+    \markright{}
+    \onecolumn
+    \raggedbottom
+    \normalsize
+    \normalfont
+    \EmphReset  % bold or underlined?
+    \doublespacing  % footnotes and floats still singlespaced
+    \setcounter{tocdepth}{2}
+    \setcounter{secnumdepth}{\value{th@SecNum}}
 % Redefine the bibliography command here, just in case someone
 % uses a custom *.sty file that redefines bibliography command
 	\let\th@OldBib\thebibliography
@@ -343,6 +304,7 @@
 		\end{th@OldBib}
 	}
 }
+
 
 %%%%%%%%%%% ADDITIONAL STUFF:
 \setcounter{tocdepth}{2}
@@ -840,13 +802,13 @@
 
 %%%%%%%%%% COMMANDS CHANGED FOR THIS CLASS
 %%%%%% Unavailable commands
-\renewcommand*{\theindex}{\ClassWarning{thesis}
+\renewcommand*{\theindex}{\ClassWarning{thesis2side}
 	{Indexing not available in this class.}}
-\renewcommand*{\twocolumn}{\ClassWarning{thesis}
+\renewcommand*{\twocolumn}{\ClassWarning{thesis2side}
 	{Twocolumn not available in this class.}}
-\renewcommand*{\thepart}{\ClassWarning{thesis}
+\renewcommand*{\thepart}{\ClassWarning{thesis2side}
 	{``thepart'' not available in this class.}}
-\renewcommand*{\part}{\ClassWarning{thesis}
+\renewcommand*{\part}{\ClassWarning{thesis2side}
 	{``thepart'' not available in this class.}}
 %%%%%% New commands
 % This forces a page number on the first page of a chapter, etc.
@@ -860,26 +822,26 @@
 % Default values of storage variables.  Emits an error message.
 % This part of the class is long...
 \newcommand*{\th@title}{
-	\ClassError{thesis}{
-		You must specify a title!}
+	\ClassError{thesis2side}
+		{You must specify a title!}
 	{Use the \protect\title{} command in the preamble.}
 }
 \newcommand*{\th@fwdname}{
-	\ClassError{thesis}{
-		You must specify your name!}
+	\ClassError{thesis2side}
+		{You must specify your name!}
 	{Use the \protect\author{}{} command in the \MessageBreak
 		preamble. The first arg is your first name and \MessageBreak
 		middle initial.  The second arg is your last name.}
 }
 \newcommand*{\th@revname}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify your name!}
 	{Use the \protect\author{}{} command in the \MessageBreak
 		preamble. The first arg is your first name and \MessageBreak
 		middle initial.  The second arg is your last name.}
 }
 \newcommand*{\th@deptname}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify the name of the department \MessageBreak
 		granting your degree and what type of \MessageBreak
 		organization it is within the University.}
@@ -890,7 +852,7 @@
 		'Department of', 'School of', etc.}
 }
 \newcommand*{\th@deptorg}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify the name of the department \MessageBreak
 		granting your degree and what type of \MessageBreak
 		organization it is within the University.}
@@ -901,7 +863,7 @@
 		'Department of', 'School of', etc.}
 }
 \newcommand*{\th@advisor}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify your research advisor's name \MessageBreak
 		and full title.}
 	{Use the \protect\advisor{}{} command in the \MessageBreak
@@ -910,7 +872,7 @@
 		name.}
 }
 \newcommand*{\th@advisortitle}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify your research advisor's name \MessageBreak
 		and full title.}
 	{Use the \protect\advisor{}{} command in the \MessageBreak
@@ -919,7 +881,7 @@
 		name.}
 }
 \newcommand*{\th@reader}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify the name of the other \MessageBreak
 		committee member who will be signing your \MessageBreak
 		thesis.}
@@ -928,9 +890,9 @@
 \newcommand*{\th@readerThree}{none}	% optional
 \newcommand*{\th@readerFour}{none}	% optional
 \newcommand*{\th@readerFive}{none}	% optional
-\newcommand*{\th@IRBprotocol}{none}	% optional
+\newcommand*{\th@readerSix}{none}	% optional
 \newcommand*{\th@fulldegree}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify the type of degree you are \MessageBreak
 		receiving.}
 	{Use the \protect\degree{}{} command in the \MessageBreak
@@ -941,7 +903,7 @@
 		'Ph. D., Biology'.}
 }
 \newcommand*{\th@degree}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify the type of degree you are \MessageBreak
 		receiving.}
 	{Use the \protect\degree{}{} command in the \MessageBreak
@@ -952,14 +914,14 @@
 		e.g. 'Ph. D., Biology'.}
 }
 \newcommand{\th@otherdegrees}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify other degrees you hold!}
 	{Use the \protect\otherdegrees{} command in the \MessageBreak
 		preamble.  Break each line using the \protect\\ \MessageBreak
 		command.}
 }
 \newcommand{\th@abstractStash}{
-	\ClassError{thesis}{
+	\ClassError{thesis2side}{
 		You must specify an abstract!}
 	{Use the \protect\abstractpage[]{} command in the \MessageBreak
 		preamble.  If your abstract runs over a page, \MessageBreak
@@ -968,7 +930,7 @@
 \newcommand*{\th@degreeyear}{\number\the\year}
 \newcommand*{\th@signature}[1]{ \begin{center}
 		\normalsize
-		\vspace*{16mm}	% works well?
+		\vspace*{12mm}	% works well?
 		\vrule width 80mm height 0.2mm\\
 		#1 \end{center}
 }
@@ -1050,7 +1012,7 @@
 		\th@deptname
 	\end{center}
 	\vspace*{2mm}
-	\th@signature{\th@advisortitle\ \th@advisor}
+	\th@signature{\th@advisor}
 	\th@signature{\th@reader}		% REQUIRED.
 	\ifthenelse{\equal{\th@readerThree}{none}}{\relax}
                 {\th@signature{\th@readerThree}} % optional
@@ -1058,6 +1020,8 @@
                 {\th@signature{\th@readerFour}} % optional
 	\ifthenelse{\equal{\th@readerFive}{none}}{\relax}
                 {\th@signature{\th@readerFive}} % optional
+        	\ifthenelse{\equal{\th@readerSix}{none}}{\relax}
+                {\th@signature{\th@readerSix}} % optional
 	\th@dateline
 	\vspace*{\fill}
 	\begin{center}
@@ -1065,8 +1029,6 @@
 		the signatories, and we find that both the content
 		and the form meet acceptable presentation standards
 		of scholarly work in the above mentioned discipline.
-	\ifthenelse{\equal{\th@IRBprotocol}{none}}{\relax}
-                {\par\vspace*{7mm}IRB protocol \#{\th@IRBprotocol}}
 	\end{center}
 	\vspace*{\fill}
 }
@@ -1194,7 +1156,7 @@
 \newcommand*{\readerThree}[1]{\th@StoreIn{\th@readerThree}{#1}}
 \newcommand*{\readerFour}[1]{\th@StoreIn{\th@readerFour}{#1}}
 \newcommand*{\readerFive}[1]{\th@StoreIn{\th@readerFive}{#1}}
-\newcommand*{\IRBprotocol}[1]{\th@StoreIn{\th@IRBprotocol}{#1}}
+\newcommand*{\readerSix}[1]{\th@StoreIn{\th@readerSix}{#1}}
 \newcommand*{\degreeyear}[1]{\th@StoreIn{\th@degreeyear}{#1}}
 \newcommand{\otherdegrees}[1]{\th@StoreIn{\th@otherdegrees}{#1}}
 \newcommand{\acknowledgements}[1]{
@@ -1253,4 +1215,4 @@
 	\typeout{Putting page number on short LoT}
 }
 \endinput
-%%%%%%%%%%%%%%%% End of file ``thesis.cls''
+%%%%%%%%%%%%%%%% End of file ``thesis2side.cls''
