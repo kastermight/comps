@@ -47,6 +47,41 @@ In this type of simulations rate of convergence was predominated due to characte
 \section{Simulation Results}
 After the method was validated and convergence rates were studied, variety of 2D simulations of supersonic inviscid flow were performed. Namely, flow around single and multiple stationary and moving cylinders, wedges with subcritical and supercritical angles. It is worth to mention that at this point no quantitative analysis of applicability of CBVP was done for these simulations. All results are treated based on the assumption that convergence rates defined in heat equation benchmarks hold for these simulations according to the used BCs (either $\sim \sqrt \eta$ or $\sim \eta$). 
 
+\subsection{Flow Around the Wedge}
+In this set of simulations supersonic flow around both subcritical and supercritical wedges are considered. Incident shock speed is $M = 1.5$ (see Fig.~\ref{fig:wedge_scheme}). In case of subcritical wedge, i.e. angle at the apex is less than certain critical angle $\theta_{crit}$, secondary oblique shock is performed. 
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.6]{fig/wedge_scheme.pdf}\\
+\caption{Schematic of the flow around the wedge. \label{fig:wedge_scheme}}
+\end{figure}\\
+Between the wedge angle $\theta$ and oblique shock deflection angle $\beta$ there is a relation called ``$\theta-\beta-M$'' equation \eqref{eq:th-b-m} (see Fig.~\ref{fig:th-b-m}).
+\begin{align}
+\tan \theta = 2 \cot \gb \frac {M \sin^2 \gb - 1}{M^2 \rbr{\gG + \cos 2 \gb} + 2}. \label{eq:th-b-m}
+\end{align}
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.2]{fig/th-b-m.pdf}\\
+\caption{$\theta-\beta-M$ relation plot. \label{fig:th-b-m}}
+\end{figure}\\
+For this particular setup, one can find that $\theta_{crit} \approx 15^\circ$, and subcritical wedge angle was $\theta = 10^\circ$. For the wedge angle $\theta > \theta_{crit}$ detached bow shock is formed. Supercritical angle was $\theta = 25^\circ$.
+\begin{figure}[h!]
+\centering \includegraphics[width=0.69\linewidth]{fig/wedge_sub.png}\\
+Subcritical wedge\\ [1ex]
+\includegraphics[width=0.65\linewidth]{fig/wedge_super.png}\\
+Supercritical wedge\\
+\caption{Flow around the wedge results. \label{fig:wedge_res}}
+\end{figure}
+
+\subsection{Flow Around Single and Multiple Stationary Cylinders}
+In this set of simulations, same $M=1.5$ shock impinges either single or multiple solid cylinders (see Fig.~\ref{fig:cyl_scheme}). Unlike the flow around the wedge, in case of cylinder always detached shock will be formed. There is no analytical solution to this problem, although plenty of both experimental and numerical results.
+\begin{figure}[h!]
+\begin{minipage}{0.5\linewidth}
+\includegraphics[scale=0.4]{fig/single_cyl.pdf}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\includegraphics[scale=0.4]{fig/mul_cyl.pdf}
+\end{minipage}
+\caption{Single and multiple cylinders case schematics} \label{fig:cyl_scheme}
+\end{figure}
+
 {\color{red}{All of our results here, for cylinders, wedge, etc, split by subsections}}
 
 
