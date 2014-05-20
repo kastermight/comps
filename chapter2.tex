@@ -15,7 +15,7 @@ Introducing so-called Mask function, typically denoted as $\chi(\mb x)$, which i
 \begin{align*}
 \chi(\mb x) = \fbrl{\begin{array}{cl}
 1, & \md{if } \mb x \in \Omega_o \\
-0, & \md{else}
+0, & \md{else.}
 \end{array}}
 \end{align*}
 \item
@@ -70,12 +70,12 @@ u(\mathbf x) &= \sum_{k \in \mathcal K^0} c_k^0 \phi_k^0 (\mathbf x) + \sum_{j =
 \end{align}
 where $\phi_k^0(\mathbf x)$ is a scaling function at the coarsest level of resolution and $\psi_l^{\mu, j}(\mathbf x)$ is a wavelet function at the level of resolution $j$, $c_k^0$ and $d_l^{\mu, j}$ are scaling and wavelet coefficients accordingly. Main advantage of the decomposition above is it can be split into two parts
 \begin{align}
-u(\mathbf x) &= u_\ge (\mathbf x) + u_< (\mathbf x)
+u(\mathbf x) &= u_\ge (\mathbf x) + u_< (\mathbf x),
 \end{align}
 where
 \begin{align}
 \nonumber
-u_\ge (\mathbf x) &= \sum_{k \in \mathcal K^0} c_k^0 \phi_k^0 (\mathbf x) + \sum_{j = 0}^\infty \sum_{\mu = 1}^{2^n - 1} \sum_{\substack{l \in \mathcal L^{\mu, j} \\ \lbr{d_l^{\mu, j}} \ge \epsilon \dbr u }} d_l^{\mu, j} \psi_l^{\mu, j} (\mathbf x) \\
+u_\ge (\mathbf x) &= \sum_{k \in \mathcal K^0} c_k^0 \phi_k^0 (\mathbf x) + \sum_{j = 0}^\infty \sum_{\mu = 1}^{2^n - 1} \sum_{\substack{l \in \mathcal L^{\mu, j} \\ \lbr{d_l^{\mu, j}} \ge \epsilon \dbr u }} d_l^{\mu, j} \psi_l^{\mu, j} (\mathbf x), \\
 u_<(\mathbf x) &= \sum_{j = 0}^\infty \sum_{\mu = 1}^{2^n - 1} \sum_{\substack{l \in \mathcal L^{\mu, j} \\ \lbr{d_l^{\mu, j}} < \epsilon \dbr u }} d_l^{\mu, j} \psi_l^{\mu, j} (\mathbf x),
 \end{align}
 based on some threshold value $\ges$. Donoho \cite{lib:donoho} had shown that absolute error of neglecting $u_<(\mathbf x)$ part of the function leads to controllable error on the function, namely
@@ -117,8 +117,8 @@ where $\Phi$ can be found as
 \begin{align}
 \Phi &= \fbrl{\begin{array}{ll}
 \frac {\lbr{d_k^{j_{max}}}}{\dbr u}, & \md{if } 0 < \lbr{d_k^{j_{max}}} \le \ges_d \dbr u \\
-1, & \md{if } \lbr{d_k^{j_{max}}} > \ges_d \dbr u
-\end{array}},
+1, & \md{if } \lbr{d_k^{j_{max}}} > \ges_d \dbr u,
+\end{array}}
 \end{align}
 where $\lbr{d_k^{j_{max}}}$ is a wavelet coefficient at fines level of resolution and $\ges_d$ is also a chosen thresholding parameter to limit $\Phi$, apart from the wavelet threshold parameter $\ges$.
 
@@ -144,8 +144,8 @@ For the sake of simplicity, let us consider pseudo one dimensional Euler equatio
 \frac {\pt \mathbf u}{\pt t} + \frac {\pt \mathbf F \rbr{\mathbf u}}{\pt x} = 0 \\
 \mathbf u = \fbrl{\begin{array}{ll}
 \mathbf u_L, & \md{if } x \le x_S \\
-\mathbf u_R, & \md{if } x > x_S
-\end{array}},
+\mathbf u_R, & \md{if } x > x_S,
+\end{array}}
 \end{align}
 where 
 \begin{align}
@@ -211,10 +211,14 @@ Next step is to substitute all values defined in \eqref{eq:matrix}-\eqref{eq:eig
 \end{align}
 where $\ga_j$ is so called wave strength --- weight that takes into account contribution from each eigenvector. Roe's original approach is to calculate them as follows:
 \begin{align}
-\widetilde \ga_3 &= \gD u_3 - \widetilde v \gD u_1 \\
-\widetilde \ga_4 &= \gD u_4 - \widetilde w \gD u_1 \\
-\widetilde \ga_2 &= \frac {\hat \gG}{\widetilde a^2} \sbr{\gD u_1 \rbr{\widetilde H - \widetilde u^2} + \widetilde u \gD u_2 - \overline{\gD u_5}} \\
-\widetilde \ga_1 &= \frac 1{2 \widetilde a} \sbr{\gD u_1 \rbr{\widetilde u + \widetilde a} - \gD u_2 - \widetilde a \widetilde \ga_2} \\
+\nonumber
+\widetilde \ga_3 &= \gD u_3 - \widetilde v \gD u_1, \\
+\nonumber
+\widetilde \ga_4 &= \gD u_4 - \widetilde w \gD u_1, \\
+\widetilde \ga_2 &= \frac {\hat \gG}{\widetilde a^2} \sbr{\gD u_1 \rbr{\widetilde H - \widetilde u^2} + \widetilde u \gD u_2 - \overline{\gD u_5}}, \\
+\nonumber
+\widetilde \ga_1 &= \frac 1{2 \widetilde a} \sbr{\gD u_1 \rbr{\widetilde u + \widetilde a} - \gD u_2 - \widetilde a \widetilde \ga_2}, \\
+\nonumber
 \widetilde \ga_5 &= \gD u_1 - \rbr{\widetilde \ga_1 + \widetilde \ga_2},
 \end{align}
 where $\gD \mathbf u = \mathbf u_R - \mathbf u_L$ and $\overline{\gD u_5} = \gD u_5 - \widetilde \ga_3 \widetilde v - \widetilde \ga_4 \widetilde w$. $\mathbf u$ --- is a solution vector. This procedure can be naturally extended to the full 3D case, with simple directional rotation of coordinate system and considering each direction as flow direction in pseudo one dimensional problem.
