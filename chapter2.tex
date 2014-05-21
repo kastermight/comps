@@ -51,7 +51,7 @@ In order to reach proper acoustic reflection from the obstacle one can also intr
 \end{align}
 which can be translated to the form \eqref{eq:rhs} as 
 \begin{align}
-\frac {\pt \rho}{\pt t} &= RHS - \chi \rbr{\frac 1\phi - 1} \frac {\pt \rho u_j}{\pt x_j}.
+\frac {\pt \rho}{\pt t} &= RHS - \chi \rbr{\frac 1\phi - 1} \frac {\pt \rho u_j}{\pt x_j}. \label{eq:poro_den}
 \end{align}
 One can also penalize temperature as well, in case such boundary condition is meant to be satisfied at the obstacle boundary.
 \begin{align}
@@ -61,10 +61,10 @@ which mimics isothermal boundary condition $T|_{\pt \Omega} = T^o$ and can be in
 \begin{align}
 \rho e &= \frac {\rho u_j u_j}2 + \rho c_VT = \frac {\rho u_j u_j}2 + \frac p{\gG - 1} \label{eq:igeos}.
 \end{align}
-Results of BP implementation to supersonic inviscid flow are shown in Chapter 3 as a motivation for new VP method.
+Results of BP implementation to supersonic inviscid flow are shown in Chapter 3 as a motivation for new VPM.
 
 \section{Adaptive Wavelet Collocation Method}
-For Hi-Fi simulations to reduce number of used grid points AWCM was used. Let us consider some target function $u(\mathbf x)$ that can be sampled on some uniform grid of chosen highest level of resolution, although grid does not have to be uniform, as long as it is structured. In this project uniform grid is used as a first step in grid adaptation. Following Vasilyev et al. \cite{lib:wlt_main} one can decompose given function into wavelet functions and scaling function at the lowest level of resolution
+For High Fidelity simulations to reduce number of used grid points AWCM is used. Let us consider some target function $u(\mathbf x)$ that can be sampled on some uniform grid of chosen highest level of resolution, although grid does not have to be uniform, as long as it is structured. In this project uniform grid is used as a first step in grid adaptation. Following Vasilyev et al. \cite{lib:wlt_main} one can decompose given function into wavelet functions and scaling function at the lowest level of resolution
 \begin{align}
 u(\mathbf x) &= \sum_{k \in \mathcal K^0} c_k^0 \phi_k^0 (\mathbf x) + \sum_{j = 0}^\infty \sum_{\mu = 1}^{2^n - 1} \sum_{l \in \mathcal L^{\mu, j}} d_l^{\mu, j} \psi_l^{\mu, j} (\mathbf x),
 \end{align}
@@ -86,11 +86,11 @@ which means that one can use only part of the grid points and retain desired acc
 
 Wavelet basis functions possess other ``nice'' properties, such as localization in both space and time. In this project, along with all other projects conducted in Multiscale Modeling and Simulation Laboratory led by Dr. Vasilyev, interpolating wavelets are used (See Fig.~\ref{fig:wlt}). Constructing wavelet functions is relatively simple and have well described recursive algorithm \cite{lib:wlt_home}.
 
-\begin{figure}[h!]
+\begin{figure}[t]
 \centering \includegraphics[scale=1]{fig/wlt_decomp.pdf}\\
 \caption{Wavelet coefficients of a function with two sharp transitions \label{fig:wlt_decomp}}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[t]
 \begin{minipage}{0.5\linewidth}
 \includegraphics[scale=0.7]{fig/wlt.pdf}\\
 \centering{a) Interpolating wavelet of 3$^{rd}$ order}
@@ -102,14 +102,14 @@ Wavelet basis functions possess other ``nice'' properties, such as localization 
 \caption{Localized nature of wavelet function} \label{fig:wlt}
 \end{figure}
 
-Adaptation procedure can be easily iterated over time evolution, which makes it also a dynamic, so one can assure that grid always represents current state of the physical phenomenon. In order to do this properly the concept of Adjacent Zone was introduced \cite{lib:wlt_main} (see Fig.~\ref{fig:wlt_adj}). One may consider it as a safety regions within which coefficients might become significant even after the time integration. In this case one can make sure that global accuracy of the simulations is still within the user defined and controlled threshold in evolution problems, and most importantly keep adapted grid in up to date state. Using adapted grid also saves memory required to store variable values at each grid point, since one needs fewer of them.
+Adaptation procedure can be easily iterated over time evolution, which makes it also a dynamic, so one can assure that grid always represents current state of the physical phenomenon. In order to do this properly the concept of Adjacent Zone is introduced \cite{lib:wlt_main} (see Fig.~\ref{fig:wlt_adj}). One may consider it as a safety regions within which coefficients might become significant even after the time integration. In this case one can make sure that global accuracy of the simulations is still within the user defined and controlled threshold in evolution problems, and most importantly keep adapted grid in up to date state. Using adapted grid also saves memory required to store variable values at each grid point, since one needs fewer of them.
 \begin{figure}[h!]
 \centering \includegraphics[scale=1]{fig/wlt_adj.pdf}\\
 \caption{Safety region with possible significant wavelets after one time step \label{fig:wlt_adj}}
 \end{figure}
 
 \section{Wavelet Based Artificial Viscosity as a Shock Capturing Scheme}
-Using AWCM becomes even more attractive for Hi-Fi simulations per discussion in previous section --- Wavelet coefficients have large values at the regions of steep gradients and discontinuities are as steep as one can get. Numerically it means that there are coefficients on all levels of resolution. By Regele and Vasilyev \cite{lib:RegVas} was developed a method to track and smooth those gradients. The core of the method is to add artificial viscosity to the desired hyperbolic equation with dynamic artificial viscosity, when latter depends on ``shock locator'' --- specifically cooked flux limiting function. Let us consider simple one dimensional conservation equation with added artificial diffusion term,
+Using AWCM becomes even more attractive for High Fidelity simulations per discussion in previous section --- Wavelet coefficients have large values at the regions of steep gradients and discontinuities are as steep as one can get. Numerically it means that there are coefficients on all levels of resolution. By Regele and Vasilyev \cite{lib:RegVas} is developed a method to track and smooth those gradients. The core of the method is to add artificial viscosity to the desired hyperbolic equation with dynamic artificial viscosity, when latter depends on ``shock locator'' --- specifically cooked flux limiting function. Let us consider simple one dimensional conservation equation with added artificial diffusion term,
 \begin{align}
 \frac {\pt u}{\pt t} + \frac {\pt f}{\pt x} &= \frac \pt {\pt x} \rbr{\nu \rbr{\Phi} \frac {\pt u}{\pt x}},
 \end{align}
@@ -122,7 +122,7 @@ where $\Phi$ can be found as
 \end{align}
 where $\lbr{d_k^{j_{max}}}$ is a wavelet coefficient at fines level of resolution and $\ges_d$ is also a chosen thresholding parameter to limit $\Phi$, apart from the wavelet threshold parameter $\ges$.
 
-In Fig.~\ref{fig:visc} one may find viscosity field and corresponding Schlieren image of the density field for 2D supersonic flow around the solid circle. Problem was solved using aforementioned artificial viscosity. Per methods design, viscosity is non-zero at shock locations, based on the Schlieren image, and vanishes everywhere else.
+In Fig.~\ref{fig:visc} one may find viscosity field and corresponding Schlieren image of the density field for 2D supersonic flow around the solid circle. Problem is solved using aforementioned artificial viscosity. Per methods design, viscosity is non-zero at shock locations, based on the Schlieren image, and vanishes everywhere else.
 \begin{figure}[h!]
 \begin{minipage}{0.5\linewidth}
 \includegraphics[scale=0.4]{fig/visc.pdf}\\
@@ -136,7 +136,7 @@ In Fig.~\ref{fig:visc} one may find viscosity field and corresponding Schlieren 
 \end{figure}
 
 \section{Riemann Problem and Riemann Solver of Roe}
-A Riemann problem consists of a conservation laws together with piecewise constant data having a single discontinuity, or in other words, one or multiple hyperbolic equations with discontinuous initial conditions. As a such system one can consider Euler or Navier-Stokes equations. Either numerical or analytical technique to solve such a problem is called Riemann solver. For non-linear problems, like Euler and Navier-Stokes, there are number of numerical Riemann solvers, such as Godunov Scheme, Flux Vector Splitting, Roe solver \cite{book:Toro}, etc. For Lo-Fi simulations of this project latter was used.
+A Riemann problem consists of a conservation laws together with piecewise constant data having a single discontinuity, or in other words, one or multiple hyperbolic equations with discontinuous initial conditions. As a such system one can consider Euler or Navier-Stokes equations. Either numerical or analytical technique to solve such a problem is called Riemann solver. For non-linear problems, like Euler and Navier-Stokes, there are number of numerical Riemann solvers, such as Godunov Scheme, Flux Vector Splitting, Roe solver \cite{book:Toro}, etc. For Low Fidelity simulations of this project latter is used.
 
 For the sake of simplicity, let us consider pseudo one dimensional Euler equations for ideal gas with discontinuous ICs.
 \begin{align}

@@ -2,9 +2,9 @@
 \chapter{New Volume Penalization Methods}
 \label{chapter:3}
 \section{Brinkman-like Penalization for Low Fidelity Simulations}
-Due to the coarse grid used in Lo-Fi simulations slightly modified BP methods was developed, in order to match drag force that drives particles obtained numerically with experimental results. The idea is to introduce momentum penalization term which is quadratic in velocity
+Due to the coarse grid used in Low Fidelity simulations slightly modified BPMs is developed, in order to match drag force that drives particles obtained numerically with experimental results. The idea is to introduce momentum penalization term which is quadratic in velocity
 \begin{align}
-\frac {\pt \rho u_i}{\pt t} &= RHS - \frac \chi \eta \rho \rbr{u_i - U_i^o}^2.
+\frac {\pt \rho u_i}{\pt t} &= RHS - \frac \chi \eta \rho \rbr{u_i - U_i^o}^2. \label{eq:lofi-penal}
 \end{align}
 From one hand, it forces the solution to the proper value at the obstacle boundary even faster than in case of simple BP, on the other hand this expression makes modeling of the penalization easier and flow independent. Namely, 
 \begin{align}
@@ -16,13 +16,13 @@ where $\Omega$ is the volume of the obstacle, and $A$ is largest cross section a
 \end{align}
 
 \section{Characteristic Based Volume Penalization}
-First VP method used in Hi-Fi simulations was Brinkman Penalization. For testing purposes 1D Riemann problem for Euler equations were solved (see Fig.~\ref{fig:riemann_euler}).
+First VPM used in High Fidelity simulations is Brinkman Penalization. For testing purposes 1D Riemann problem for Euler equations are solved (see Fig.~\ref{fig:riemann_euler}).
 \begin{figure}[h!]
 \centering \includegraphics[scale=0.5]{fig/Riemann_Euler.pdf}\\
 \caption{Riemann problem set up \label{fig:riemann_euler}}
 \end{figure}
 
-To compare results, first, normal self-sustained shock problem was solved with reflection on the right domain boundary. Then right domain was extended and part of the domain was considered as solid obstacle and BP was used to model that solid obstacle/wall. Results revealed that using BP without any modification to supersonic flow leads to significant numerical errors such as phase lag and amplitude error, e.g. pressure seepage (see Fig.~\ref{fig:plain_bp}).
+To compare results, first, normal self-sustained shock problem is solved with reflection on the right domain boundary. Then right domain is extended and part of the domain is considered as solid obstacle and BP is used to model that solid obstacle/wall. Results revealed that using BP without any modification to supersonic flow leads to significant numerical errors such as phase lag and amplitude error, e.g. pressure seepage (see Fig.~\ref{fig:plain_bp}).
 \begin{figure}[h!]
 \begin{minipage}{0.49\linewidth}
 \includegraphics[scale=0.2]{fig/sod1_init.png}\\
@@ -36,7 +36,7 @@ To compare results, first, normal self-sustained shock problem was solved with r
 \caption{Normal reflection from the wall (top) and BP (bottom)} \label{fig:plain_bp}
 \end{figure}
 
-In order to overcome deficiencies of BP regarding flow regimes and boundary conditions, new VP method was developed. Let us consider general BC that one wants to mimic at the fluid-solid interface
+In order to overcome deficiencies of BP regarding flow regimes and boundary conditions, new VPM is developed. Let us consider general BC that one wants to mimic at the fluid-solid interface
 \begin{align}
 \mathcal L \rbr \bullet = f_{boundary},
 \end{align}
@@ -44,7 +44,7 @@ where $\rbr \bullet$ may stand for any of the integrated variables, and operator
 \begin{align}
 \frac {\pt \phi}{\pt t} = RHS \longrightarrow \frac {\pt \phi}{\pt t} = (1-\chi)RHS - \frac \chi \eta \sbr{\mathcal L \rbr \phi - f_{boundary}}. \label{eq:CBVP}
 \end{align}
-Obviously, BP method is a special case of CBVP, when $\mathcal L = \mathds 1$ and $f_{boundary} = U^o$ for velocity or $f_{boundary} = T^o$ for temperature. Let us consider the same Riemann problem, but using the following BC at the obstacle instead:
+Obviously, BPM is a special case of CBVP, when $\mathcal L = \mathds 1$ and $f_{boundary} = U^o$ for velocity or $f_{boundary} = T^o$ for temperature. Let us consider the same Riemann problem, but using the following BC at the obstacle instead:
 \begin{align}
 \fbrr{\begin{array}{rl}
 \vbr{u_i^n}_{\pt \Omega} &= U_i^{on} \\ [1ex]
@@ -71,7 +71,7 @@ which can be translated to the equations in terms of integrated variables (with 
 \ds \frac {\pt \rho e}{\pt t} & = \ds -\frac 1{\eta_c} \frac {\pt \rho e}{\pt n} - \frac 1{\eta_b}\rho u_j^n \rbr{u_j^n - U_j^{on}} + \frac 1{\eta_c} u_j^n \frac {\pt \rho u_j^n}{\pt n} + u_j^n \nu_n \gD u_j^n.
 \end{array}} \label{eq:CBVP_euler}
 \end{align}
-One can notice that in \eqref{eq:CBVP_euler} there are extra terms in energy equation. They appear due to the fact that there is no so called ``characteristic term'' in normal momentum penalization and one need to add it and subtract in order to have characteristic term in energy equation as well. Also, extra diffusive term was added to the same normal momentum equation to enhance stability. These technique resulted improvements in comparison to regular BP method (see Fig.~\ref{fig:sod_cbvp}). One can find more results on using CBVP for variety of problems in Chapter 4, as well as benchmarks.
+One can notice that in \eqref{eq:CBVP_euler} there are extra terms in energy equation. They appear due to the fact that there is no so called ``characteristic term'' in normal momentum penalization and one need to add it and subtract in order to have characteristic term in energy equation as well. Also, extra diffusive term is added to the same normal momentum equation to enhance stability. These technique resulted improvements in comparison to regular BPM (see Fig.~\ref{fig:sod_cbvp}). One can find more results on using CBVP for variety of problems in Chapter 4, as well as benchmarks.
 \begin{figure}[h!]
 \centering \includegraphics[scale=0.3]{fig/sod1_cbvp.png}\\
 \caption{SOD1 test problem with CBVP \label{fig:sod_cbvp}}
