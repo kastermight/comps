@@ -1,4 +1,38 @@
 %!TEX root = comps_NKasimov.tex
 \chapter{Future Work}
 \label{chapter:6}
-{\color{red}{Still working on future work part. Will be about making 3D simulations, getting better models to apply in Low Fidelity simulations.}}
+\section{High Fidelity Simulations}
+\begin{enumerate}[1.]
+\item
+\bt{Invariance in inertial frame of reference.} For High Fidelity simulations it is planned to improve CBVP in order to handle proper switch to moving frame of reference to maintain invariance of dynamic variables such as pressure and density in inertial frame of reference. This is a necessary condition that method will work for moving 
+obstacles properly.
+
+\item
+\bt{Complex shapes.} This step is planned to be accomplished in parallel with previous step. At this point only simple shape particles are considered --- cylinders, spheres, ellipsoids, wedges. The plan is to be able to handle particles of arbitrary shape. Since we use the concept of distance function in our simulations, we might end up using Level Set methods \cite{book:levset} to find and track masking functions of more complex shapes in the future.
+
+\item
+\bt{Method validation for supersonic flows.} So far method is tested and benchmarked against simple structured problems such as Heat equation and 2D acoustic wave propagation, it is not tested on supersonic flows yet. It is intended to finish validation on both viscous and inviscid supersonic flows after the step 1.
+
+\item
+\bt{3D Cases.} After the method is validated and its applicability is justified, it is planned to perform 3D simulations of flows around complex geometries.
+
+\item
+\bt{Developing models.} Last step and ultimate goal is to develop models based on these High Fidelity simulations to use in Low Fidelity simulations. 
+\end{enumerate}
+
+\section{Low Fidelity Simulations}
+\begin{enumerate}[1.]
+
+\item
+\bt{Parallelize the code.} At this point CFD/DEM coupled code is serial, which is getting problematic since size of the problem is increasing. First thing to improve in Low Fidelity simulations part of the project is properly parallelize and test the code. DEM code is already parallelized, so main problem is to parallelize CFD code and synchronize it with DEM part.
+
+\item
+\bt{More realistic cases.} Particles considered as of now are ellipsoidal. To imitate real particles that correspond to different ejecta from the explosion we are going to take into account parameters like roughness, to mimic sharp edged particles at statistical level.
+
+\item
+\bt{Match with experiments.} Low Fidelity simulations capable of reproducing physical experiments on blast wave propagation at qualitative level at the blast initiation stage. The plan is to improve methodology so numerical results match with experiments with desired level of confidence at accuracy using models obtained by performing High Fidelity simulations.
+
+\item
+\bt{Couple with other numerical frameworks.} This project is a part of big research on multi physics phenomena on blast wave propagation. There are several research groups working on different parts of the problem with different timescales. As a consequence there several numerical platforms each groups is working on. The ultimate goal of our Low Fidelity simulations is to couple CDF/DEM code with other codes to get final code that can handle all physical levels of the phenomena from the beginning to the very end.
+
+\end{enumerate}

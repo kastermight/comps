@@ -50,8 +50,18 @@ W.~Sweldens and P.~Shroder, {\em Wavelets in the Geosciences}, vol.~90 of {\em
   Lecture Notes in Earth Sciences}, ch.~2, pp.~72--107.
 \newblock Springer, 2000.
 
+\bibitem{lib:adjacent}
+J.~Liandrat and P.~H. Tchamitchian, ``Resolution of the 1d regularized burgers
+  equation using a spatial wavelet approximation,'' Tech. Rep. 90-83, NASA,
+  1990.
+
 \bibitem{lib:Roe}
 P.~Roe, ``Approximate riemann solvers, parameter vectors, and difference
   schemes,'' {\em J. Comp. Phys.}, vol.~43, no.~2, pp.~357--372, 1981.
+
+\bibitem{book:levset}
+J.~A. Sethian, {\em Level Set Methods and Fast Marching Methods}.
+\newblock Cambridge Monograph on Applied and Computational Mathematics,
+  Cambridge University Press, 2~ed., 1999.
 
 \end{thebibliography}

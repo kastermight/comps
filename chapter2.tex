@@ -23,26 +23,27 @@ Altering governing equations by adding forcing terms, so that boundary condition
 \end{enumerate}
 Additional forcing terms can be added either before the governing equations are discretized or after. This order determines the type of methods in IB methods family. Volume penalization (VP) is a subclass of IB methods where equations are altered before the discretization, therefore conceptually does not depend on numerical approach to be used.
 
-Consider the following oversimplified version of Navier-Stokes equations
+Consider the following Navier-Stokes equations
 \begin{align}
-\nonumber
-\frac {\pt \rho}{\pt t} + \frac {\pt \rho u_j}{\pt x_j} &= 0 \\
-\frac {\pt \rho u_i}{\pt t} + \frac {\pt \rho u_i u_j}{\pt x_j} + \frac {\pt p}{\pt x_i} + \frac {\pt \tau_{ij}}{\pt x_j} &= 0\\
-\nonumber
-\frac {\pt \rho e}{\pt t} + \frac {\pt u_j \rbr{\rho e + p}}{\pt x_j} + \frac {\pt u_i \tau_{ij}}{\pt x_j} &= 0,
+\fbrl{\begin{array}{ll}
+\ds \frac {\pt \rho}{\pt t} + \frac {\pt \rho u_j}{\pt x_j} &= 0 \\
+\ds \frac {\pt \rho u_i}{\pt t} + \frac {\pt \rho u_i u_j}{\pt x_j} + \frac {\pt p}{\pt x_i} + \frac {\pt \tau_{ij}}{\pt x_j} &= 0\\
+\ds \frac {\pt \rho e}{\pt t} + \frac {\pt u_j \rbr{\rho e + p}}{\pt x_j} + \frac {\pt u_i \tau_{ij}}{\pt x_j} &= 0,
+\end{array}}
 \end{align}
-along with constitutive equations for ideal gas and Newtonian fluid assumption, that form a closed system.
+along with constitutive equations for ideal gas that form a closed system.
 
 Throughout entire writeup numerically more convenient form of the equations as described below will be used:
 \begin{align}
-\frac {\pt \vp}{\pt t} &= RHS_\vp. \label{eq:rhs}
+\frac {\pt \vp}{\pt t} &= RHS, \label{eq:rhs}
 \end{align}
+where $RHS$ is different for each equation.
 
-The idea behind the Brinkman penalization is to alter momentum equation, i.e. penalize it, at every grid point, hence volume penalization. 
+The idea behind the Brinkman penalization is to alter momentum equation, i.e. penalize it, at every grid point. 
 \begin{align}
 \frac {\pt \rho u_i}{\pt t} &= RHS - \frac \chi \eta {\rho \rbr{u_i - U_i^o}},
 \end{align}
-where $\eta$ is numerical permeability of the obstacle. One needs to keep in mind that it is artificial. This equation, firstly, keeps solution outside of the obstacle unchanged due to the masking function and, secondly, mimics no slip boundary condition $u_i|_{\pt \Omega} = U_i^o$ after reaching steady state regime. 
+where $\eta$ is numerical permeability of the obstacle. One needs to keep in mind that it is artificial. This equation is unchanged outside of the obstacle due to the masking function and it mimics no slip boundary condition $u_i|_{\pt \Omega} = U_i^o$ at the timescale $\eta$. 
 
 In order to reach proper acoustic reflection from the obstacle one can also introduce numerical porosity $\phi$ in continuity equation to mimic porous media in full extent.
 \begin{align}
@@ -61,10 +62,10 @@ which mimics isothermal boundary condition $T|_{\pt \Omega} = T^o$ and can be in
 \begin{align}
 \rho e &= \frac {\rho u_j u_j}2 + \rho c_VT = \frac {\rho u_j u_j}2 + \frac p{\gG - 1} \label{eq:igeos}.
 \end{align}
-Results of BP implementation to supersonic inviscid flow are shown in Chapter 3 as a motivation for new VPM.
+Results of BPM implementation to supersonic inviscid flow are shown in Chapter 3 as a motivation for new VPM.
 
 \section{Adaptive Wavelet Collocation Method}
-For High Fidelity simulations to reduce number of used grid points AWCM is used. Let us consider some target function $u(\mathbf x)$ that can be sampled on some uniform grid of chosen highest level of resolution, although grid does not have to be uniform, as long as it is structured. In this project uniform grid is used as a first step in grid adaptation. Following Vasilyev et al. \cite{lib:wlt_main} one can decompose given function into wavelet functions and scaling function at the lowest level of resolution
+For High Fidelity simulations to reduce number of used grid points, AWCM is used. Let us consider some target function $u(\mathbf x)$ that can be sampled on some uniform grid of chosen highest level of resolution, although grid does not have to be uniform, as long as it is structured. In this project uniform grid is used as a first step in grid adaptation. Following Vasilyev et al. \cite{lib:wlt_main} one can decompose given function into wavelet functions and scaling function at the lowest level of resolution
 \begin{align}
 u(\mathbf x) &= \sum_{k \in \mathcal K^0} c_k^0 \phi_k^0 (\mathbf x) + \sum_{j = 0}^\infty \sum_{\mu = 1}^{2^n - 1} \sum_{l \in \mathcal L^{\mu, j}} d_l^{\mu, j} \psi_l^{\mu, j} (\mathbf x),
 \end{align}
@@ -84,13 +85,13 @@ based on some threshold value $\ges$. Donoho \cite{lib:donoho} had shown that ab
 \end{align}
 which means that one can use only part of the grid points and retain desired accuracy. This property allows to construct an adaptive grid with significantly fewer number of points. Only the regions with steep gradients have large values of wavelet coefficients, which makes wavelets a good indicator of those gradients. For example, in Fig.~\ref{fig:wlt_decomp} wavelet coefficients of the function with two sharp transitions are presented.
 
-Wavelet basis functions possess other ``nice'' properties, such as localization in both space and time. In this project, along with all other projects conducted in Multiscale Modeling and Simulation Laboratory led by Dr. Vasilyev, interpolating wavelets are used (See Fig.~\ref{fig:wlt}). Constructing wavelet functions is relatively simple and have well described recursive algorithm \cite{lib:wlt_home}.
+Wavelet basis functions possess other ``nice'' properties, such as localization in both space and time. In this project, along with all other projects conducted in Multiscale Modeling and Simulation Laboratory, interpolating wavelets are used (See Fig.~\ref{fig:wlt}). Constructing wavelet functions is relatively simple and have well described recursive algorithm \cite{lib:wlt_home}.
 
 \begin{figure}[t]
 \centering \includegraphics[scale=1]{fig/wlt_decomp.pdf}\\
 \caption{Wavelet coefficients of a function with two sharp transitions \label{fig:wlt_decomp}}
 \end{figure}
-\begin{figure}[t]
+\begin{figure}[h!]
 \begin{minipage}{0.5\linewidth}
 \includegraphics[scale=0.7]{fig/wlt.pdf}\\
 \centering{a) Interpolating wavelet of 3$^{rd}$ order}
@@ -102,11 +103,12 @@ Wavelet basis functions possess other ``nice'' properties, such as localization 
 \caption{Localized nature of wavelet function} \label{fig:wlt}
 \end{figure}
 
-Adaptation procedure can be easily iterated over time evolution, which makes it also a dynamic, so one can assure that grid always represents current state of the physical phenomenon. In order to do this properly the concept of Adjacent Zone is introduced \cite{lib:wlt_main} (see Fig.~\ref{fig:wlt_adj}). One may consider it as a safety regions within which coefficients might become significant even after the time integration. In this case one can make sure that global accuracy of the simulations is still within the user defined and controlled threshold in evolution problems, and most importantly keep adapted grid in up to date state. Using adapted grid also saves memory required to store variable values at each grid point, since one needs fewer of them.
+Adaptation procedure can be easily iterated over time evolution, which makes it also a dynamic, so one can assure that grid always represents current state of the physical phenomenon. In order to do this properly the concept of Adjacent Zone is introduced \cite{lib:adjacent} (see Fig.~\ref{fig:wlt_adj}).
 \begin{figure}[h!]
 \centering \includegraphics[scale=1]{fig/wlt_adj.pdf}\\
-\caption{Safety region with possible significant wavelets after one time step \label{fig:wlt_adj}}
-\end{figure}
+\caption{Safety region with possible significant wavelets after one time step \cite{lib:wlt_main} \label{fig:wlt_adj}}
+\end{figure}\\
+One may consider it as a safety regions within which coefficients might become significant even after the time integration. In this case one can make sure that global accuracy of the simulations is still within the user defined and controlled threshold in evolution problems, and most importantly keep adapted grid in up to date state. Using adapted grid also saves memory required to store variable values at each grid point, since one needs fewer of them.
 
 \section{Wavelet Based Artificial Viscosity as a Shock Capturing Scheme}
 Using AWCM becomes even more attractive for High Fidelity simulations per discussion in previous section --- Wavelet coefficients have large values at the regions of steep gradients and discontinuities are as steep as one can get. Numerically it means that there are coefficients on all levels of resolution. By Regele and Vasilyev \cite{lib:RegVas} is developed a method to track and smooth those gradients. The core of the method is to add artificial viscosity to the desired hyperbolic equation with dynamic artificial viscosity, when latter depends on ``shock locator'' --- specifically cooked flux limiting function. Let us consider simple one dimensional conservation equation with added artificial diffusion term,

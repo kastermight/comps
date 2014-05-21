@@ -36,13 +36,13 @@ Next step in the project is to test the methodology on free spherical particle (
 \end{minipage}
 \caption{Flow around single free sphere} \label{fig:lofi_single_vf}
 \end{figure}\\
-On the left plot forces demonstrate noisy behavior. The reason is in coarse grid, so when particle moves the grid particle occupies at any given moment of time might change in suddenly step when time advances. To solve this issue partial volumes taken by particles are calculated (see Fig.~\ref{fig:lofi-vf}) and results can be found on the right plot. Negative pressure force is still present.
+On the left plot forces demonstrate noisy behavior. The reason is in coarse grid, so when particle moves the grid cell that particle occupies at any given moment of time might suddenly change when time advances. To solve this issue partial volumes taken by particles are calculated (see Fig.~\ref{fig:lofi-vf}) and results can be found on the right plot. Negative pressure force is still present.
 \begin{figure}[h!]
 \centering \includegraphics[scale=0.2]{fig/lofi_vf.png}\\
 \caption{Grid cells occupied partially by the particle calculated more accurately \label{fig:lofi-vf}}
 \end{figure}
 
-\section{Flow around Several Free Ellipsoidal}
+\section{Flow around Several Free Ellipsoids}
 The method is tested on two and more particles (see Fig.~\ref{fig:lofi_2pt}). During the simulation smaller particle at lower position accelerates more due to the smaller mass and penalization force depends on the relative velocity only. After hitting bigger particle on top it slows down, but later accelerates again. This process continues until both particles stick together. Negative pressure is still present.
 
 In case of substantial number of particles situation changes, instead of going through the particles and forming bow shape shocks as in case of few particles, shock reflects from the wall of particles as if they cannot be penetrated (see Fig.~\ref{fig:lofi_1kpt}).
