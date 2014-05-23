@@ -1,14 +1,17 @@
 %!TEX root = comps_NKasimov.tex
 \chapter{Future Work}
 \label{chapter:6}
+In this chapter future plans are discussed. The project, as a part of bigger project, consists of two parts --- Low Fidelity simulations of complex phenomenon of blast wave propagation. In order to handle huge number of particles (e.g. dust particles and blast ejecta) resulting from the explosion and due to the fact that  one cannot afford DNS of the flow involving all those particles, numerical models based on High Fidelity simulations will be provided with significantly less number of particles. To do that properly, models should be well tested and validated. Models should handle realistic particles with arbitrary shapes and be 3D. Models should be valid for wide variety of regimes, such as high and low Reynolds numbers. subsonic and supersonic flows, etc. After all these steps, CFD/DEM coupled codes should be further coupled with other numerical frameworks that handle other physics of the aforementioned complex phenomenon. One can split and prioritize the plans as follows:
 \section{High Fidelity Simulations}
 \begin{enumerate}[1.]
 \item
-\bt{Invariance in inertial frame of reference.} For High Fidelity simulations it is planned to improve CBVP in order to handle proper switch to moving frame of reference to maintain invariance of dynamic variables such as pressure and density in inertial frame of reference. This is a necessary condition that method will work for moving 
-obstacles properly.
+\bt{Invariance in inertial frame of reference.} For High Fidelity simulations it is planned to improve CBVP in order to handle proper switch to moving frame of reference to maintain invariance of dynamic variables such as pressure and density in inertial frame of reference. This is a necessary condition that method will work for moving obstacles properly.
 
 \item
-\bt{Complex shapes.} This step is planned to be accomplished in parallel with previous step. At this point only simple shape particles are considered --- cylinders, spheres, ellipsoids, wedges. The plan is to be able to handle particles of arbitrary shape. Since we use the concept of distance function in our simulations, we might end up using Level Set methods \cite{book:levset} to find and track masking functions of more complex shapes in the future.
+\bt{Particle-particle collisions.} After moving obstacles can be handle correctly, it is planned to model particle-particle interactions through simple collision models using Lagrangian frmaework.
+
+\item
+\bt{Complex shapes.} This step is planned to be accomplished in parallel with previous steps. At this point only simple shape particles are considered --- cylinders, spheres, ellipsoids, wedges. The plan is to be able to handle particles of arbitrary shape. Since we use the concept of distance function in our simulations, we might end up using Level Set methods \cite{book:levset} to find and track masking functions of more complex shapes in the future.
 
 \item
 \bt{Method validation for supersonic flows.} So far method is tested and benchmarked against simple structured problems such as Heat equation and 2D acoustic wave propagation, it is not tested on supersonic flows yet. It is intended to finish validation on both viscous and inviscid supersonic flows after the step 1.

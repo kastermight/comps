@@ -1,5 +1,14 @@
 \begin{thebibliography}{10}
 
+\bibitem{th:ScReck}
+S.~J. Reckinger, {\em Adaptive Wavelet-Based Direct Numerical Simulations of
+  Rayleigh-Taylor Instability}.
+\newblock PhD thesis, University of Colorado Boulder, 2013.
+
+\bibitem{lib:wlt_main}
+K.~Schneider and O.~V. Vasilyev, ``Wavelet methods in computational fluid
+  dynamics,'' {\em Ann. Rev. Fluid Mech.}, vol.~42, pp.~473--503, 2010.
+
 \bibitem{proc:muri}
 R.~Regueiro and et.al., ``Onr muri project on soil blast modeling and
   simulation,'' in {\em Dynamic Behavior of Materials} (B.~Sang, D.~Casem, and
@@ -17,10 +26,6 @@ E.~Brown-Dymkoski, N.~Kasimov, and O.~V. Vasilyev, ``A characteristic based
 J.~Regele and O.~Vasilyev, ``An adaptive wavelet-collocation method for shock
   computations,'' {\em Intl. Journal of CFD}, vol.~23, no.~7, pp.~503--518,
   2009.
-
-\bibitem{lib:wlt_main}
-K.~Schneider and O.~V. Vasilyev, ``Wavelet methods in computational fluid
-  dynamics,'' {\em Ann. Rev. Fluid Mech.}, vol.~42, pp.~473--503, 2010.
 
 \bibitem{book:Toro}
 E.~Toro, {\em Riemann Solvers and Numerical Methods for Fluid Dynamics: A

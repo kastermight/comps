@@ -1,15 +1,13 @@
 %!TEX root = comps_NKasimov.tex
 \chapter{Background}
 \label{chapter:2}
+
+
 \section{Brinkman Penalization}
 There are three main algorithmic steps involved in IB methods:
 \begin{enumerate}
 \item
 Splitting mesh points into three classes (See Figure~\ref{fig:ib_mesh}): Field points --- points outside of the obstacle; Band points --- field points closest to the obstacle surface; and Interior points --- points inside of the obstacle.
-\begin{figure}[h!]
-\centering \includegraphics[scale=0.5]{fig/ib.pdf}
-\caption{Mesh points for IB methods} \label{fig:ib_mesh}
-\end{figure}
 \item
 Introducing so-called Mask function, typically denoted as $\chi(\mb x)$, which is nothing but indicator function
 \begin{align*}
@@ -22,6 +20,12 @@ Introducing so-called Mask function, typically denoted as $\chi(\mb x)$, which i
 Altering governing equations by adding forcing terms, so that boundary conditions at the obstacle surface are approximately satisfied, involving the $\chi(\mb x)$ above, so that equations in field points do not change.
 \end{enumerate}
 Additional forcing terms can be added either before the governing equations are discretized or after. This order determines the type of methods in IB methods family. Volume penalization (VP) is a subclass of IB methods where equations are altered before the discretization, therefore conceptually does not depend on numerical approach to be used.
+
+\begin{figure}[t!]
+\centering \includegraphics[scale=0.5]{fig/ib.pdf}
+\caption{Mesh points for IB methods} \label{fig:ib_mesh}
+\end{figure}
+
 
 Consider the following Navier-Stokes equations
 \begin{align}
@@ -43,7 +47,7 @@ The idea behind the Brinkman penalization is to alter momentum equation, i.e. pe
 \begin{align}
 \frac {\pt \rho u_i}{\pt t} &= RHS - \frac \chi \eta {\rho \rbr{u_i - U_i^o}},
 \end{align}
-where $\eta$ is numerical permeability of the obstacle. One needs to keep in mind that it is artificial. This equation is unchanged outside of the obstacle due to the masking function and it mimics no slip boundary condition $u_i|_{\pt \Omega} = U_i^o$ at the timescale $\eta$. 
+where $\eta$ is numerical permeability of the obstacle. One needs to keep in mind that it is artificial. This approach keeps equations unchanged outside of the obstacle due to the $\chi$ and it mimics no slip boundary condition $u_i|_{\pt \Omega} = U_i^o$ at the timescale $t \gg \eta$. 
 
 In order to reach proper acoustic reflection from the obstacle one can also introduce numerical porosity $\phi$ in continuity equation to mimic porous media in full extent.
 \begin{align}
@@ -64,8 +68,14 @@ which mimics isothermal boundary condition $T|_{\pt \Omega} = T^o$ and can be in
 \end{align}
 Results of BPM implementation to supersonic inviscid flow are shown in Chapter 3 as a motivation for new VPM.
 
+\begin{figure}[t]
+\centering \includegraphics[scale=1]{fig/wlt_decomp.pdf}\\
+\caption{Wavelet coefficients of a function with two sharp transitions \cite{th:ScReck} \label{fig:wlt_decomp}}
+\end{figure}
+
+
 \section{Adaptive Wavelet Collocation Method}
-For High Fidelity simulations to reduce number of used grid points, AWCM is used. Let us consider some target function $u(\mathbf x)$ that can be sampled on some uniform grid of chosen highest level of resolution, although grid does not have to be uniform, as long as it is structured. In this project uniform grid is used as a first step in grid adaptation. Following Vasilyev et al. \cite{lib:wlt_main} one can decompose given function into wavelet functions and scaling function at the lowest level of resolution
+In order to resolve small scale flow features in a computationally efficient manner it is essential to use adaptive mesh refinement techniques. In current work for High Fidelity simulations AWCM is used. Let us consider some target function $u(\mathbf x)$ that can be sampled on some uniform grid of chosen highest level of resolution, although grid does not have to be uniform, as long as it is structured. In this project uniform grid is used as a first step in grid adaptation. Following Vasilyev et al. \cite{lib:wlt_main} one can decompose given function into wavelet functions and scaling function at the lowest level of resolution
 \begin{align}
 u(\mathbf x) &= \sum_{k \in \mathcal K^0} c_k^0 \phi_k^0 (\mathbf x) + \sum_{j = 0}^\infty \sum_{\mu = 1}^{2^n - 1} \sum_{l \in \mathcal L^{\mu, j}} d_l^{\mu, j} \psi_l^{\mu, j} (\mathbf x),
 \end{align}
@@ -85,13 +95,9 @@ based on some threshold value $\ges$. Donoho \cite{lib:donoho} had shown that ab
 \end{align}
 which means that one can use only part of the grid points and retain desired accuracy. This property allows to construct an adaptive grid with significantly fewer number of points. Only the regions with steep gradients have large values of wavelet coefficients, which makes wavelets a good indicator of those gradients. For example, in Fig.~\ref{fig:wlt_decomp} wavelet coefficients of the function with two sharp transitions are presented.
 
-Wavelet basis functions possess other ``nice'' properties, such as localization in both space and time. In this project, along with all other projects conducted in Multiscale Modeling and Simulation Laboratory, interpolating wavelets are used (See Fig.~\ref{fig:wlt}). Constructing wavelet functions is relatively simple and have well described recursive algorithm \cite{lib:wlt_home}.
+Wavelet basis functions possess other ``nice'' properties, such as localization in both space and time. In this project, along with all other projects conducted in Multiscale Modeling and Simulation Laboratory, interpolating wavelets are used (see Fig.~\ref{fig:wlt}). Constructing wavelet functions is relatively simple and discussed in detail in \cite{lib:wlt_home}.
 
 \begin{figure}[t]
-\centering \includegraphics[scale=1]{fig/wlt_decomp.pdf}\\
-\caption{Wavelet coefficients of a function with two sharp transitions \label{fig:wlt_decomp}}
-\end{figure}
-\begin{figure}[h!]
 \begin{minipage}{0.5\linewidth}
 \includegraphics[scale=0.7]{fig/wlt.pdf}\\
 \centering{a) Interpolating wavelet of 3$^{rd}$ order}
@@ -100,7 +106,7 @@ Wavelet basis functions possess other ``nice'' properties, such as localization 
 \includegraphics[scale=0.7]{fig/wlt_fft.pdf}\\
 \centering{b) Fourier transform of wavelet}
 \end{minipage}
-\caption{Localized nature of wavelet function} \label{fig:wlt}
+\caption{Localized nature of wavelet function \cite{wlt:main}} \label{fig:wlt}
 \end{figure}
 
 Adaptation procedure can be easily iterated over time evolution, which makes it also a dynamic, so one can assure that grid always represents current state of the physical phenomenon. In order to do this properly the concept of Adjacent Zone is introduced \cite{lib:adjacent} (see Fig.~\ref{fig:wlt_adj}).
@@ -111,7 +117,7 @@ Adaptation procedure can be easily iterated over time evolution, which makes it 
 One may consider it as a safety regions within which coefficients might become significant even after the time integration. In this case one can make sure that global accuracy of the simulations is still within the user defined and controlled threshold in evolution problems, and most importantly keep adapted grid in up to date state. Using adapted grid also saves memory required to store variable values at each grid point, since one needs fewer of them.
 
 \section{Wavelet Based Artificial Viscosity as a Shock Capturing Scheme}
-Using AWCM becomes even more attractive for High Fidelity simulations per discussion in previous section --- Wavelet coefficients have large values at the regions of steep gradients and discontinuities are as steep as one can get. Numerically it means that there are coefficients on all levels of resolution. By Regele and Vasilyev \cite{lib:RegVas} is developed a method to track and smooth those gradients. The core of the method is to add artificial viscosity to the desired hyperbolic equation with dynamic artificial viscosity, when latter depends on ``shock locator'' --- specifically cooked flux limiting function. Let us consider simple one dimensional conservation equation with added artificial diffusion term,
+Using AWCM becomes even more attractive for High Fidelity simulations per discussion in previous section --- Wavelet coefficients have large values at the regions of steep gradients and discontinuities are as steep as one can get. Numerically it means that there are coefficients on all levels of resolution. Regele and Vasilyev \cite{lib:RegVas} have developed a method to track and smooth those gradients. The core of the method is to add artificial viscosity to the desired hyperbolic equation with dynamic artificial viscosity, when latter depends on ``shock locator'' --- a concept similar to flux limiting approach. Let us consider simple one dimensional conservation equation with added artificial diffusion term,
 \begin{align}
 \frac {\pt u}{\pt t} + \frac {\pt f}{\pt x} &= \frac \pt {\pt x} \rbr{\nu \rbr{\Phi} \frac {\pt u}{\pt x}},
 \end{align}
@@ -196,7 +202,7 @@ Equation \eqref{eq:Euler} can be numerically integrated as
 \end{align}
 where half-integer indices are introduced for convenience and to distinguish intercell values from cell values on chosen grid. Variety of Riemann solvers differ by the way they calculate those intercell values.
 
-Philip Roe proposed to calculate intercell fluxes using certain averaging procedure based on right and left values of corresponding local fluxes \cite{lib:Roe} as follows
+Roe proposed to calculate intercell fluxes using certain averaging procedure based on right and left values of corresponding local fluxes \cite{lib:Roe} as follows
 \begin{align}
 \begin{array}{c}
 \widetilde {\rbr \bullet} = \ds \frac {\sqrt {\rho_L} \rbr \bullet_L + \sqrt {\rho_R} \rbr \bullet_R}{\sqrt{\rho_L} + \sqrt{\rho_R}}

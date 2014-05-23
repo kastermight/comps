@@ -48,31 +48,40 @@ In this type of simulations rate of convergence is predominated due to character
 After the method is validated and convergence rates are studied, variety of 2D simulations of supersonic inviscid flow are performed. Namely, flow around single and multiple stationary and moving cylinders, wedges with subcritical and supercritical angles. It is worth to mention that at this point no quantitative analysis of applicability of CBVP is done for these simulations. All results are treated based on the assumption that convergence rates defined in heat equation benchmarks hold for these simulations according to the used BCs (either $\sim \sqrt \eta$ or $\sim \eta$). 
 
 \subsection{Flow around the Wedge}
-In this set of simulations supersonic flow around both subcritical and supercritical wedges are considered. Incident shock speed is $M = 1.5$ (see Fig.~\ref{fig:wedge_scheme}). In case of subcritical wedge, i.e. angle at the apex is less than certain critical angle $\theta_{crit}$, secondary oblique shock is formed. 
-\begin{figure}[h!]
-\centering \includegraphics[scale=0.6]{fig/wedge_scheme.pdf}\\
-\caption{Schematic of the flow around the wedge \label{fig:wedge_scheme}}
-\end{figure}\\
-Between the wedge angle $\theta$ and oblique shock deflection angle $\beta$ there is a relation called ``$\theta-\beta-M$'' equation \eqref{eq:th-b-m} (see Fig.~\ref{fig:th-b-m}).
-\begin{align}
-\tan \theta = 2 \cot \gb \frac {M \sin^2 \gb - 1}{M^2 \rbr{\gG + \cos 2 \gb} + 2}. \label{eq:th-b-m}
-\end{align}
-\begin{figure}[h!]
-\centering \includegraphics[scale=0.2]{fig/th-b-m.pdf}\\
-\caption{$\theta-\beta-M$ relation plot \label{fig:th-b-m}}
-\end{figure}\\
-For this particular setup, one can find that $\theta_{crit} \approx 15^\circ$, and subcritical wedge angle is $\theta = 10^\circ$. For the wedge angle $\theta > \theta_{crit}$ detached bow shock is formed. Supercritical angle is $\theta = 25^\circ$.
-\begin{figure}[h!]
-\centering \includegraphics[width=0.69\linewidth]{fig/wedge_sub.png}\\
-Subcritical wedge\\ [1ex]
-\includegraphics[width=0.65\linewidth]{fig/wedge_super.png}\\
+In this set of simulations supersonic flow around both subcritical and supercritical wedges are considered. Incident shock speed is $S = 1.5Ma$ (speed of sound is taken at the left state) (see Fig.~\ref{fig:wedge}). In case of subcritical wedge, i.e. angle at the apex is less than certain critical angle $\theta_{\md{crit}}$, secondary oblique shock is formed. 
+%\begin{figure}[h!]
+%\centering \includegraphics[scale=0.6]{fig/wedge_scheme.pdf}\\
+%\caption{Schematic of the flow around the wedge \label{fig:wedge_scheme}}
+%\end{figure}\\
+\begin{figure}[t!]
+\begin{minipage}{0.5\linewidth}
+\centering \includegraphics[height=4.5cm]{fig/wedge_scheme.pdf}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\centering \includegraphics[height=4.7cm]{fig/th-b-m2.png}
+\end{minipage}
+\caption{Wedge flow schematics (left) and ``$\theta-\beta-M$'' relation (right)} \label{fig:wedge}
+\end{figure}
+\begin{figure}[t!]
+\centering \includegraphics[width=0.6\linewidth]{fig/wedge_sub.png}\\
+Subcritical wedge\\
+\includegraphics[width=0.6\linewidth]{fig/wedge_super.png}\\
 Supercritical wedge\\
 \caption{Flow around the wedge results \label{fig:wedge_res}}
 \end{figure}
+Between the wedge angle $\theta$ and oblique shock deflection angle $\beta$ there is a relation called ``$\theta-\beta-M$'' equation \eqref{eq:th-b-m} (see Fig.~\ref{fig:wedge}).
+\begin{align}
+\tan \theta = 2 \cot \gb \frac {M \sin^2 \gb - 1}{M^2 \rbr{\gG + \cos 2 \gb} + 2}. \label{eq:th-b-m}
+\end{align}
+%\begin{figure}[h!]
+%\centering \includegraphics[scale=0.2]{fig/th-b-m.pdf}\\
+%\caption{$\theta-\beta-M$ relation plot \label{fig:th-b-m}}
+%\end{figure}\\
+For this particular setup, one can find that $\theta_{\md{crit}} \approx 15^\circ$, and subcritical wedge angle is $\theta = 10^\circ$. For the wedge angle $\theta > \theta_{crit}$ detached bow shock is formed. Supercritical angle is $\theta = 25^\circ$.
 
 \subsection{Flow around Single and Multiple Stationary Cylinders}
 In this set of simulations, same $M=1.5$ shock impinges either single or multiple solid cylinders (see Fig.~\ref{fig:cyl_scheme}). Unlike the flow around the wedge, in case of cylinder always detached shock will be formed. There is no analytical solution to this problem.
-\begin{figure}[t]
+\begin{figure}[h!]
 \begin{minipage}{0.5\linewidth}
 \includegraphics[scale=0.4]{fig/single_cyl.pdf}
 \end{minipage}
@@ -81,12 +90,11 @@ In this set of simulations, same $M=1.5$ shock impinges either single or multipl
 \end{minipage}
 \caption{Single and multiple cylinders case schematics} \label{fig:cyl_scheme}
 \end{figure}\\
-In case of single cylinder, one can see reflected bow shape shock (see Fig.~\ref{fig:single_res}).
 \begin{figure}[h!]
 \centering \includegraphics[scale=0.3]{fig/single_res.png}\\
 \caption{Supersonic flow around single cylinder \label{fig:single_res}}
-\end{figure} \\
-In case of multiple cylinders one can also notice shock-shock interactions (see Fig.~\ref{fig:mult_res}). \\\\\\
+\end{figure}
+In case of single cylinder, one can see reflected bow shape shock (see Fig.~\ref{fig:single_res}) and for multiple cylinders one can also notice shock-shock interactions (see Fig.~\ref{fig:mult_res}).
 \begin{figure}[t]
 \centering \includegraphics[scale=0.35]{fig/mult_res.png}\\
 \caption{Supersonic flow around multiple cylinders \label{fig:mult_res}}
@@ -97,4 +105,6 @@ In case of multiple cylinders one can also notice shock-shock interactions (see 
 \caption{Supersonic flow around stationary and moving cylinders \label{fig:mov_res}}
 \end{figure}
 \subsection{Flow around Single Stationary and Moving Cylinder}
-This case is to demonstrate the ability of the CBVP to handle physically equivalent phenomena considered from two different frame of references, moving and non moving, within the acceptable level accuracy. For this purpose, two identical numerical frameworks are developed. One with supersonic uniform background flow and stationary cylinder, and another with zero background flow and a single cylinder moving supersonically embedded to that flow. Flow pressure and density are kept identical in both set ups (see Fig.~\ref{fig:mov_res}). One can notice that results are not completely identical. The reason is at this point methodology is not completely consistent when switching to moving frame of reference, and this issue will be addressed in future work (see Chapter~6).
+This case is to demonstrate the ability of the CBVP to handle physically equivalent phenomena considered from two different frame of references, moving and non moving, within the acceptable level accuracy. For this purpose, two identical numerical frameworks are developed. One with supersonic uniform background flow and stationary cylinder, and another with zero background flow and a single cylinder moving supersonically embedded to that flow. Flow pressure and density are kept identical in both set ups (see Fig.~\ref{fig:mov_res}). One can notice that results are different. The cause for that problem is identified. It relates to the boundary conditions that were not set in moving frame of reference. In particular, the formulation is rewritten in moving frame of reference and then translated into non moving frame. This results in additional correction terms in the equations. This issue will be fully addressed in future work (see Chapter~6).
+
+
